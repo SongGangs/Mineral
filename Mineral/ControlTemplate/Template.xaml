@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTemplate x:Key="QueryTxtTemplate" TargetType="{x:Type TextBox}">
+        <StackPanel Orientation="Horizontal">
+            <TextBox  Height="45" Width="300"  Foreground="#FF75F6F8" FontSize="28" FontWeight="Bold" FontStyle="Italic" ></TextBox>
+            <Image Source="../Images/inquery.png" Width="30" Margin="-30,0,0,0" ></Image>
+        </StackPanel>
+    </ControlTemplate>
+    <ControlTemplate x:Key="SelectItemBtnTemplate" TargetType="{x:Type Button}">
+        <StackPanel Orientation="Horizontal">
+            <TextBox Text="按显微镜特征搜索" IsReadOnly="True"  Foreground="#FF75F6F8" FontSize="28" FontWeight="Bold" FontStyle="Italic"  Height="45" Width="300" ></TextBox>
+            <Image Source="../Images/forword.png" Width="30" Margin="-30,0,0,0" ></Image>
+        </StackPanel>
+    </ControlTemplate>
+    <ControlTemplate x:Key="AddMineralBtnTemplate" TargetType="{x:Type Button}">
+        <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="../Images/add.png" ></Image>
+            <Label Content="添加" Width="35"  ></Label>
+        </StackPanel>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="DelectMineralBtnTemplate" TargetType="{x:Type Button}">
+        <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="../Images/inquery.png" ></Image>
+            <Label Content="删除" Width="35"  ></Label>
+        </StackPanel>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="HomeBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/home.png" Width="30"></Image>
+    </ControlTemplate>
+    <ControlTemplate x:Key="ReSetBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/reset.png" Width="30"></Image>
+    </ControlTemplate>
+    <ControlTemplate x:Key="RadiusBtnTemplate1" TargetType="{x:Type Button}">
+        <Border   CornerRadius="15" BorderBrush="#FF86EFE2" BorderThickness="1" >
+            <Label Content="均质矿物" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#FFB03434"></Label>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="RadiusBtnTemplate2" TargetType="{x:Type Button}">
+        <Border   CornerRadius="15" BorderBrush="#FF86EFE2" BorderThickness="1" >
+            <Label Content="非均质矿物" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#FFB03434"></Label>
+        </Border>
+    </ControlTemplate>
+</ResourceDictionary>
