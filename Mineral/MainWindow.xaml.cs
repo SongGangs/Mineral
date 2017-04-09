@@ -86,7 +86,7 @@ namespace Mineral
             dlg.ShowDialog();
             if (!string.IsNullOrEmpty(dlg.FileName))
             {
-                ExcelHelper.ExportDataToAccess(dlg.FileName, OrginMineralDs);
+               MessageBox.Show(ExcelHelper.ExportDataToAccess(dlg.FileName, OrginMineralDs));
             }
             
         }
