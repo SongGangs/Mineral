@@ -88,7 +88,6 @@ namespace Mineral
         /// <param name="ds"></param>
         private void InitDataGridByDataSet(DataSet ds)
         {
-            /*
             displays = new ObservableCollection<CDisplay>();
             for (int i = 0; i < ds.Tables.Count; i++)
             {
@@ -100,7 +99,7 @@ namespace Mineral
                     });
                 }
             }
-            this.DataGrid.ItemsSource = displays;*/
+            this.DataGrid.ItemsSource = displays;
         }
         /// <summary>
         /// 通过实体将文本框初始化
