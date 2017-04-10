@@ -67,6 +67,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\AccessDB.cs" />
+    <Compile Include="Common\CDisplay.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />
     <Compile Include="Common\HeterogeneousMineralInfo.cs" />
     <Compile Include="Common\HomogeneousMineralInfo.cs" />
@@ -119,6 +120,7 @@
     <Content Include="DB\Mineral.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\export.png" />
     <Resource Include="Images\add.png" />
     <Resource Include="Images\back.png" />
     <Resource Include="Images\delect.png" />
