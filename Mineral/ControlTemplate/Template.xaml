@@ -33,6 +33,22 @@
         </StackPanel>
         </Border>
     </ControlTemplate>
+    <ControlTemplate x:Key="InqueryMineralBtnTemplate" TargetType="{x:Type Button}">
+        <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="../Images/inquery.png" ></Image>
+                <Label Content="查找" Width="35"  ></Label>
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="ExportMineralBtnTemplate" TargetType="{x:Type Button}">
+        <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="../Images/export.png" ></Image>
+                <Label Content="导入" Width="35"  ></Label>
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
     <ControlTemplate x:Key="HomeBtnTemplate" TargetType="{x:Type Button}">
         <Image Source="../Images/home.png" Width="30"></Image>
     </ControlTemplate>
