@@ -25,7 +25,7 @@ namespace Mineral
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<CDisplay> displays = null;
+      //  private ObservableCollection<CDisplay> displays = null;
 
         private DataTable OrginHomoMineralDt = null;//原生均质矿物的表
         private DataTable OrginHeteMineralDt = null;//原生非均质矿物的表
@@ -87,7 +87,7 @@ namespace Mineral
         /// </summary>
         /// <param name="ds"></param>
         private void InitDataGridByDataSet(DataSet ds)
-        {
+        {/*
             displays = new ObservableCollection<CDisplay>();
             for (int i = 0; i < ds.Tables.Count; i++)
             {
@@ -99,7 +99,7 @@ namespace Mineral
                     });
                 }
             }
-            this.DataGrid.ItemsSource = displays;
+            this.DataGrid.ItemsSource = displays;*/
         }
         /// <summary>
         /// 通过实体将文本框初始化

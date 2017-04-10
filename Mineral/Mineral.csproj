@@ -119,6 +119,7 @@
     <Content Include="DB\Mineral.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\export.png" />
     <Resource Include="Images\add.png" />
     <Resource Include="Images\back.png" />
     <Resource Include="Images\delect.png" />

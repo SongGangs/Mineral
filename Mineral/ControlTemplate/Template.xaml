@@ -28,7 +28,7 @@
     <ControlTemplate x:Key="DelectMineralBtnTemplate" TargetType="{x:Type Button}">
         <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
         <StackPanel Orientation="Horizontal">
-            <Image Source="../Images/inquery.png" ></Image>
+            <Image Source="../Images/delect.png" ></Image>
             <Label Content="删除" Width="35"  ></Label>
         </StackPanel>
         </Border>
