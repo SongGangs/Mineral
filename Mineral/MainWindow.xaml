@@ -24,10 +24,16 @@
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF0E7482">
             <Button Name="Btn_AddMineral" Template="{StaticResource AddMineralBtnTemplate}"></Button>
             <Button Name="Btn_DelectMineral" Template="{StaticResource DelectMineralBtnTemplate}" Margin="5,0,0,0"></Button>
-            <Button Name="Btn_ExportToDB" Template="{StaticResource DelectMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_ExportToDB_Click"></Button>
+            <Button Name="Btn_InqueryMineral" Template="{StaticResource InqueryMineralBtnTemplate}" Margin="5,0,0,0"></Button>
+            <Button Name="Btn_ExportToDB" Template="{StaticResource ExportMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_ExportToDB_Click"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="0.2,0.8,157.2,0.2" Grid.Row="1" />
-        <DataGrid Name="ListView" Grid.Row="1" Grid.Column="2" Margin="0.4,0.8,0.2,0.2"></DataGrid>
+        <DataGrid Name="DataGrid" Grid.Row="1" Grid.Column="2" Margin="0.4,0.8,0.2,0.2" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="" Width="45"/>
+                <DataGridTextColumn Header="矿物名称" Width="114" Binding="{Binding ChineseName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
             <StackPanel>
                 <Label Content="logo" Margin="20,50,19.8,0" Height="217" Background="#FFC12B2B" />
