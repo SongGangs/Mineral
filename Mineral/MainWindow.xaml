@@ -18,8 +18,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Orientation="Horizontal" Background="#FF75F6F8">
-            <Button Name="Btn_Forword" Template="{StaticResource HomeBtnTemplate}" Click="Btn_Forword_Click"></Button>
-            <Button Name="Btn_ReSet" Template="{StaticResource ReSetBtnTemplate}"></Button>
+            <Button Name="Btn_Forword" Template="{StaticResource HomeBtnTemplate}" Click="Btn_Forword_Click" ToolTip="首页"></Button>
+            <Button Name="Btn_ReSet" Template="{StaticResource ReSetBtnTemplate}" ToolTip="重置"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF0E7482">
             <Button Name="Btn_AddMineral" Template="{StaticResource AddMineralBtnTemplate}"></Button>
