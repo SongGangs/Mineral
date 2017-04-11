@@ -18,13 +18,13 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Orientation="Horizontal" Background="#FF75F6F8">
-            <Button Name="Btn_Forword" Template="{StaticResource HomeBtnTemplate}" Click="Btn_Forword_Click"></Button>
-            <Button Name="Btn_ReSet" Template="{StaticResource ReSetBtnTemplate}"></Button>
+            <Button Name="Btn_Forword" Template="{StaticResource HomeBtnTemplate}" Click="Btn_Forword_Click" ToolTip="首页"></Button>
+            <Button Name="Btn_ReSet" Template="{StaticResource ReSetBtnTemplate}" ToolTip="重置"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF0E7482">
             <Button Name="Btn_DelectMineral" Template="{StaticResource DelectMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_DelectMineral_Click"></Button>
             <Button Name="Btn_AddMineral" Template="{StaticResource AddMineralBtnTemplate}" Click="Btn_AddMineral_Click" Height="27" VerticalAlignment="Top"></Button>
-            <Button Name="Btn_UpdateMineral" Template="{StaticResource UpdateMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_UpdateMineral_Click"></Button>
+            <Button Name="Btn_UpdateMineral" Template="{StaticResource UpdateMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_UpdateMineral_Click" ></Button>
             <Button Name="Btn_ExportToDB" Template="{StaticResource ExportMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_ExportToDB_Click"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="0.2,0.8,157.2,0.2" Grid.Row="1" />
@@ -55,99 +55,102 @@
         <Border Name="Border_Hete" Visibility="Hidden" Grid.Row="1" BorderThickness="0,2,3,0"
                 BorderBrush="#FF1A9EE5">
             <StackPanel>
-                <ComboBox Name="ComboBox_Heterogeneity_no" Style="{StaticResource ComboBoxStyle }"  Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="NonUniformity" >
-                    <ComboBoxItem Content="非均性："/>
-                    <ComboBoxItem Content="强"/>
-                    <ComboBoxItem Content="弱"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_ReflectivityClassify_no" Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Reflectivity" >
-                    <ComboBoxItem Content="反射率视测分级："/>
-                    <ComboBoxItem Content="Ⅰ"/>
-                    <ComboBoxItem Content="Ⅱ"/>
-                    <ComboBoxItem Content="Ⅲ"/>
-                    <ComboBoxItem Content="Ⅳ"/>
-                    <ComboBoxItem Content="Ⅴ"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_ReflectionColor_no" Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="ReflectionColor" >
-                    <ComboBoxItem Content="反射色视测分级："/>
-                    <ComboBoxItem Content="无色类"/>
-                    <ComboBoxItem Content="黄色类"/>
-                    <ComboBoxItem Content="玫瑰色类"/>
-                    <ComboBoxItem Content="蓝色类"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_Bireflection_no" Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Bireflection" >
-                    <ComboBoxItem Content="双反射及反射多色性："/>
-                    <ComboBoxItem Content="特强"/>
-                    <ComboBoxItem Content="显著"/>
-                    <ComboBoxItem Content="清楚"/>
-                    <ComboBoxItem Content="微弱"/>
-                    <ComboBoxItem Content="无"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_DAr_no" Style="{StaticResource ComboBoxStyle }"  Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="DAr" >
-                    <ComboBoxItem Content="非均质视旋转色散DAr："/>
-                    <ComboBoxItem Content="DAr=r>v"/>
-                    <ComboBoxItem Content="DAr=v>r"/>
-                    <ComboBoxItem Content="DAr=0"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_DAR_no" Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="DRr" >
-                    <ComboBoxItem Content="反射视旋转色散："/>
-                    <ComboBoxItem Content="DRr=r>v"/>
-                    <ComboBoxItem Content="DRr=v>r"/>
-                    <ComboBoxItem Content="DRr=0"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_Rs_no"  Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Rs" >
-                    <ComboBoxItem Content="旋向Rs："/>
-                    <ComboBoxItem Content="+"/>
-                    <ComboBoxItem Content="-"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_Ps_no"  Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Ps" >
-                    <ComboBoxItem Content="相符Ps："/>
-                    <ComboBoxItem Content="+"/>
-                    <ComboBoxItem Content="-"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_InternalReflection_no" Style="{StaticResource ComboBoxStyle }" Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="InternalReflection" >
-                    <ComboBoxItem Content="内反射："/>
-                    <ComboBoxItem Content="红"/>
-                    <ComboBoxItem Content="黄"/>
-                    <ComboBoxItem Content="蓝"/>
-                    <ComboBoxItem Content="绿"/>
-                    <ComboBoxItem Content="白"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_MultipleDAR_no" Style="{StaticResource ComboBoxStyle }" Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="ReflectionDAR" >
-                    <ComboBoxItem Content="综合旋转色散DAR："/>
-                    <ComboBoxItem Content="DAR:蓝))红"/>
-                    <ComboBoxItem Content="DAR:红))蓝"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_ScratchHardness_no" Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Hardness" >
-                    <ComboBoxItem Content="刻划硬度："/>
-                    <ComboBoxItem Content="高"/>
-                    <ComboBoxItem Content="中"/>
-                    <ComboBoxItem Content="低"/>
-                </ComboBox>
-                <StackPanel Orientation="Horizontal" Margin="585,-30,0,0">
-                    <Label VerticalContentAlignment="Center">维氏硬度：</Label>
-                    <TextBox Name="Txt_VickersHardness_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Hardness"></TextBox>
-                </StackPanel>
-                <StackPanel Width="332" Margin="30,15,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Label VerticalContentAlignment="Center">视觉反射率--长轴：</Label>
-                    <TextBox  Name="Txt_LongAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity"></TextBox>
-                </StackPanel>
+                <GroupBox Header="均质矿物检索条目">
+                    <StackPanel >
+                        <ComboBox Name="ComboBox_Heterogeneity_no" Style="{StaticResource ComboBoxStyle }"  Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="NonUniformity" >
+                            <ComboBoxItem Content="非均性："/>
+                            <ComboBoxItem Content="强"/>
+                            <ComboBoxItem Content="弱"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_ReflectivityClassify_no" Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Reflectivity" >
+                            <ComboBoxItem Content="反射率视测分级："/>
+                            <ComboBoxItem Content="Ⅰ"/>
+                            <ComboBoxItem Content="Ⅱ"/>
+                            <ComboBoxItem Content="Ⅲ"/>
+                            <ComboBoxItem Content="Ⅳ"/>
+                            <ComboBoxItem Content="Ⅴ"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_ReflectionColor_no" Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="ReflectionColor" >
+                            <ComboBoxItem Content="反射色视测分级："/>
+                            <ComboBoxItem Content="无色类"/>
+                            <ComboBoxItem Content="黄色类"/>
+                            <ComboBoxItem Content="玫瑰色类"/>
+                            <ComboBoxItem Content="蓝色类"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_Bireflection_no" Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Bireflection" >
+                            <ComboBoxItem Content="双反射及反射多色性："/>
+                            <ComboBoxItem Content="特强"/>
+                            <ComboBoxItem Content="显著"/>
+                            <ComboBoxItem Content="清楚"/>
+                            <ComboBoxItem Content="微弱"/>
+                            <ComboBoxItem Content="无"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_DAr_no" Style="{StaticResource ComboBoxStyle }"  Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="DAr" >
+                            <ComboBoxItem Content="非均质视旋转色散DAr："/>
+                            <ComboBoxItem Content="DAr=r>v"/>
+                            <ComboBoxItem Content="DAr=v>r"/>
+                            <ComboBoxItem Content="DAr=0"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_DAR_no" Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="DRr" >
+                            <ComboBoxItem Content="反射视旋转色散："/>
+                            <ComboBoxItem Content="DRr=r>v"/>
+                            <ComboBoxItem Content="DRr=v>r"/>
+                            <ComboBoxItem Content="DRr=0"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_Rs_no"  Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Rs" >
+                            <ComboBoxItem Content="旋向Rs："/>
+                            <ComboBoxItem Content="+"/>
+                            <ComboBoxItem Content="-"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_Ps_no"  Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Ps" >
+                            <ComboBoxItem Content="相符Ps："/>
+                            <ComboBoxItem Content="+"/>
+                            <ComboBoxItem Content="-"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_InternalReflection_no" Style="{StaticResource ComboBoxStyle }" Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="InternalReflection" >
+                            <ComboBoxItem Content="内反射："/>
+                            <ComboBoxItem Content="红"/>
+                            <ComboBoxItem Content="黄"/>
+                            <ComboBoxItem Content="蓝"/>
+                            <ComboBoxItem Content="绿"/>
+                            <ComboBoxItem Content="白"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_MultipleDAR_no" Style="{StaticResource ComboBoxStyle }" Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="ReflectionDAR" >
+                            <ComboBoxItem Content="综合旋转色散DAR："/>
+                            <ComboBoxItem Content="DAR:蓝))红"/>
+                            <ComboBoxItem Content="DAR:红))蓝"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_ScratchHardness_no" Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Hardness" >
+                            <ComboBoxItem Content="刻划硬度："/>
+                            <ComboBoxItem Content="高"/>
+                            <ComboBoxItem Content="中"/>
+                            <ComboBoxItem Content="低"/>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" Margin="585,-30,0,0">
+                            <Label VerticalContentAlignment="Center">维氏硬度：</Label>
+                            <TextBox Name="Txt_VickersHardness_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Hardness"></TextBox>
+                        </StackPanel>
+                        <StackPanel Width="332" Margin="30,15,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Label VerticalContentAlignment="Center">视觉反射率--长轴：</Label>
+                            <TextBox  Name="Txt_LongAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity"></TextBox>
+                        </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="280,-30,0,0">
-                    <Label  VerticalContentAlignment="Center" >视觉反射率--短轴：</Label>
-                    <TextBox Name="Txt_ShortAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity"></TextBox>
-                </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="280,-30,0,0">
+                            <Label  VerticalContentAlignment="Center" >视觉反射率--短轴：</Label>
+                            <TextBox Name="Txt_ShortAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity"></TextBox>
+                        </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="500,-30,0,0">
-                    <Label VerticalContentAlignment="Center">非均质视旋转角Ar：</Label>
-                    <TextBox Name="Txt_Ar_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Ar"></TextBox>
-                </StackPanel>
-
+                        <StackPanel Orientation="Horizontal" Margin="500,-30,0,0">
+                            <Label VerticalContentAlignment="Center">非均质视旋转角Ar：</Label>
+                            <TextBox Name="Txt_Ar_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Ar"></TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
                 <!--<ComboBox Style="{StaticResource ComboBoxStyle }"  Margin="585,-30,0,0"/>-->
                 <!--<ComboBox Style="{StaticResource ComboBoxStyle }"   Margin="30,15,0,0"/>-->
                 <!--<ComboBox Style="{StaticResource ComboBoxStyle }"   Margin="215,-30,0,0"/>-->
                 <!--<ComboBox Style="{StaticResource ComboBoxStyle }"    Margin="400,-30,0,0"/>-->
-                <Border BorderBrush="#FF18D2F7" BorderThickness="0,1,0,0" Margin="0,20,0,0">
+                <Border BorderBrush="#FF18D2F7" BorderThickness="0,1,0,0" >
                     <StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle}">
                             <Label Content="矿物名称" Style="{StaticResource IntLabelStyle}" />
@@ -218,60 +221,63 @@
             </StackPanel>
         </Border>
         <Border Name="Border_Homo" Grid.Row="1" Visibility="Hidden" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
-            <StackPanel Margin="0,50,0,0">
-
-                <ComboBox Name="ComboBox_ReflectivityClassify" Style="{StaticResource ComboBoxStyle }"  Margin="30,20,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="Reflectivity" >
-                    <ComboBoxItem Content="反射率视测分级："/>
-                    <ComboBoxItem Content="Ⅰ"/>
-                    <ComboBoxItem Content="Ⅱ"/>
-                    <ComboBoxItem Content="Ⅲ"/>
-                    <ComboBoxItem Content="Ⅳ"/>
-                    <ComboBoxItem Content="Ⅴ"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_ReflectionColor" Style="{StaticResource ComboBoxStyle }" Margin="215,-30,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="ReflectionColor" >
-                    <ComboBoxItem Content="反射色视测分级："/>
-                    <ComboBoxItem Content="无色类"/>
-                    <ComboBoxItem Content="黄色类"/>
-                    <ComboBoxItem Content="玫瑰色类"/>
-                    <ComboBoxItem Content="蓝色类"/>
-                </ComboBox>
-
-
-                <ComboBox Name="ComboBox_DAR" Style="{StaticResource ComboBoxStyle }"  Margin="400,-30,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="DRr">
-                    <ComboBoxItem Content="反射视旋转色散DRr："/>
-                    <ComboBoxItem Content="DAr=r>v"/>
-                    <ComboBoxItem Content="DAr=v>r"/>
-                    <ComboBoxItem Content="DAr=0"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_InternalReflection" Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="InternalReflection">
-                    <ComboBoxItem Content="内反射："/>
-                    <ComboBoxItem Content="红"/>
-                    <ComboBoxItem Content="黄"/>
-                    <ComboBoxItem Content="蓝"/>
-                    <ComboBoxItem Content="绿"/>
-                    <ComboBoxItem Content="白"/>
-                </ComboBox>
-                <ComboBox Name="ComboBox_ScratchHardness" Style="{StaticResource ComboBoxStyle }" Margin="30,15,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="Hardness">
-                    <ComboBoxItem Content="刻划硬度："/>
-                    <ComboBoxItem Content="高"/>
-                    <ComboBoxItem Content="中"/>
-                    <ComboBoxItem Content="低"/>
-                </ComboBox>
-                <StackPanel Orientation="Horizontal" Margin="215,-30,0,0">
-                    <Label VerticalContentAlignment="Center">维氏硬度：</Label>
-                    <TextBox Name="Txt_VickersHardness"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Hardness"></TextBox>
-                </StackPanel>
+            <StackPanel>
+                <GroupBox Header="均质矿物检索条目">
+                    <StackPanel Margin="0,10,0,0">
+                        <ComboBox Name="ComboBox_ReflectivityClassify" Style="{StaticResource ComboBoxStyle }"  Margin="30,20,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="Reflectivity" >
+                            <ComboBoxItem Content="反射率视测分级："/>
+                            <ComboBoxItem Content="Ⅰ"/>
+                            <ComboBoxItem Content="Ⅱ"/>
+                            <ComboBoxItem Content="Ⅲ"/>
+                            <ComboBoxItem Content="Ⅳ"/>
+                            <ComboBoxItem Content="Ⅴ"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_ReflectionColor" Style="{StaticResource ComboBoxStyle }" Margin="215,-30,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="ReflectionColor" >
+                            <ComboBoxItem Content="反射色视测分级："/>
+                            <ComboBoxItem Content="无色类"/>
+                            <ComboBoxItem Content="黄色类"/>
+                            <ComboBoxItem Content="玫瑰色类"/>
+                            <ComboBoxItem Content="蓝色类"/>
+                        </ComboBox>
 
 
-                <StackPanel Orientation="Horizontal" Margin="400,-30,0,0">
-                    <Label  VerticalContentAlignment="Center" >视觉反射率：</Label>
-                    <TextBox Name="Txt_VisualReflectivity"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Reflectivity"></TextBox>
-                </StackPanel>
+                        <ComboBox Name="ComboBox_DAR" Style="{StaticResource ComboBoxStyle }"  Margin="400,-30,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="DRr">
+                            <ComboBoxItem Content="反射视旋转色散DRr："/>
+                            <ComboBoxItem Content="DAr=r>v"/>
+                            <ComboBoxItem Content="DAr=v>r"/>
+                            <ComboBoxItem Content="DAr=0"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_InternalReflection" Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="InternalReflection">
+                            <ComboBoxItem Content="内反射："/>
+                            <ComboBoxItem Content="红"/>
+                            <ComboBoxItem Content="黄"/>
+                            <ComboBoxItem Content="蓝"/>
+                            <ComboBoxItem Content="绿"/>
+                            <ComboBoxItem Content="白"/>
+                        </ComboBox>
+                        <ComboBox Name="ComboBox_ScratchHardness" Style="{StaticResource ComboBoxStyle }" Margin="30,15,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="Hardness">
+                            <ComboBoxItem Content="刻划硬度："/>
+                            <ComboBoxItem Content="高"/>
+                            <ComboBoxItem Content="中"/>
+                            <ComboBoxItem Content="低"/>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" Margin="215,-30,0,0">
+                            <Label VerticalContentAlignment="Center">维氏硬度：</Label>
+                            <TextBox Name="Txt_VickersHardness"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Hardness"></TextBox>
+                        </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="30,15,0,0">
-                    <Label VerticalContentAlignment="Center">反射视旋转角Rr：</Label>
-                    <TextBox Name="Txt_Rr1"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Ar"></TextBox>
-                </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="400,-30,0,0">
+                            <Label  VerticalContentAlignment="Center" >视觉反射率：</Label>
+                            <TextBox Name="Txt_VisualReflectivity"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Reflectivity"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="30,15,0,0">
+                            <Label VerticalContentAlignment="Center">反射视旋转角Rr：</Label>
+                            <TextBox Name="Txt_Rr1"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Ar"></TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
                 <!--<ComboBox Style="{StaticResource ComboBoxStyle }"  Margin="30,20,0,0"/>
                 <ComboBox Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0"/>
                 <ComboBox Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0"/>
