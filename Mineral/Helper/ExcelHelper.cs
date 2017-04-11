@@ -91,7 +91,7 @@ namespace Mineral.Helper
                                 dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["反射视旋转色散DAR"].ToString(),
                                 dt.Rows[i]["内反射"].ToString(), dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(),
                                 dt.Rows[i]["主要鉴定特征"].ToString());
-                            AccessDb.Add(heterogeneousMineral);
+                            AccessDB.Add(heterogeneousMineral);
                             successed++;
                         }
 
@@ -116,7 +116,7 @@ namespace Mineral.Helper
                                 dt.Rows[i]["反射色"].ToString(), float.Parse(dt.Rows[i]["反射视旋转角Rr"].ToString().Replace("°",null)),
                                 dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["内反射"].ToString(),
                                 dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(), dt.Rows[i]["主要鉴定特征"].ToString());
-                            AccessDb.Add(homogeneousMineral);
+                            AccessDB.Add(homogeneousMineral);
                             successed++;
                         }
 

@@ -4,7 +4,7 @@
     <ControlTemplate x:Key="QueryTxtTemplate" TargetType="{x:Type TextBox}">
         <Border BorderBrush="#FF75F6F8" BorderThickness="1.5" CornerRadius="15">
             <StackPanel Orientation="Horizontal">
-                <TextBox BorderThickness="0" Background="Transparent"  Height="45" Width="300"  Foreground="#FF7C9495" FontSize="20" VerticalAlignment="Center"/>
+                <TextBox Name="Txt_QueryByName"  BorderThickness="0" Background="Transparent"  Height="45" Width="300"  Foreground="#FF7C9495" FontSize="20" VerticalAlignment="Center"/>
                 <Image Source="../Images/inquery.png" Width="30" Margin="-30,0,0,0" ></Image>
             </StackPanel>
         </Border>
@@ -33,11 +33,11 @@
         </StackPanel>
         </Border>
     </ControlTemplate>
-    <ControlTemplate x:Key="InqueryMineralBtnTemplate" TargetType="{x:Type Button}">
+    <ControlTemplate x:Key="UpdateMineralBtnTemplate" TargetType="{x:Type Button}">
         <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
             <StackPanel Orientation="Horizontal">
                 <Image Source="../Images/inquery.png" ></Image>
-                <Label Content="查找" Width="35"  ></Label>
+                <Label Content="更新" Width="35"  ></Label>
             </StackPanel>
         </Border>
     </ControlTemplate>

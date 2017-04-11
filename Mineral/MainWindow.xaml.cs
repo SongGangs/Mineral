@@ -25,11 +25,20 @@ namespace Mineral
     /// </summary>
     public partial class MainWindow : Window
     {
-      //  private ObservableCollection<CDisplay> displays = null;
-
-        private DataTable OrginHomoMineralDt = null;//原生均质矿物的表
-        private DataTable OrginHeteMineralDt = null;//原生非均质矿物的表
-        private DataSet OrginMineralDs = new DataSet();//原生矿物的表集
+        private ObservableCollection<IMineral> OrginHomoMinerals = null;//初始均质矿物集合
+        private ObservableCollection<IMineral> OrginHeteMinerals = null;//初始非均质矿物集合
+        //private ObservableCollection<IMineral> curMinerals = null;//初始矿物集合
+        private ObservableCollection<IMineral> OrginMinerals = null;//初始矿物集合
+        private IMineral curMineral = null;//当前显示的矿物
+        private DataTable OrginHomoMineralDt = null;//初始均质矿物的表
+        private DataTable OrginHeteMineralDt = null;//初始非均质矿物的表
+        private DataSet OrginMineralDs = new DataSet();//初始矿物的表集
+        private int Viewflag = 0;//0表示主页 1表示均质矿物显示页面 2表示非均质矿物显示页面
+        private Dictionary<string, string> paramters_Hete = new Dictionary<string, string>();//保存查询的参数Dictionary<类型, 实际值>---非均质
+        private Dictionary<string, string> paramters_Hoto = new Dictionary<string, string>();//保存查询的参数Dictionary<类型, 实际值>---非均质
+        private bool IsAdd = false;
+        private int modifyNum = 0;
+        private string delete_modifyString; //要删、改的项
         public MainWindow()
         {
             InitializeComponent();
@@ -47,33 +56,33 @@ namespace Mineral
             }
         }
 
-        private void showJunZhiBtn_Click(object sender, RoutedEventArgs e)
+        private void showHomoBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Border_Home.Visibility = Visibility.Hidden;
-            this.StackPanel_Item.Visibility = Visibility.Hidden;
-            this.Border_JunZhi.Visibility = Visibility.Visible;
+            ShowHomoMineralInfoView();
+            DataSet ds = new DataSet();
+            ds.Tables.Add(OrginHeteMineralDt.Copy());
+            InitDataGridByDataSet(ds);
+            FillTextProperty();
         }
 
-        private void showNoJunZhiBtn_Click(object sender, RoutedEventArgs e)
+        private void showHeteBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Border_Home.Visibility = Visibility.Hidden;
-            this.StackPanel_Item.Visibility = Visibility.Hidden;
-            this.Border_NoJunZhi.Visibility = Visibility.Visible;
-
+            ShowHeteMineralInfoView();
+            DataSet ds=new DataSet();
+            ds.Tables.Add(OrginHeteMineralDt.Copy());
+            InitDataGridByDataSet(ds);
+            FillTextProperty();
         }
 
         private void Btn_Forword_Click(object sender, RoutedEventArgs e)
         {
-            this.Border_NoJunZhi.Visibility = Visibility.Hidden;
-            this.Border_JunZhi.Visibility = Visibility.Hidden;
-            this.Border_Home.Visibility = Visibility.Visible;
-
+           ShowHomeView();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            OrginHeteMineralDt = AccessDb.Query(new HeterogeneousMineralInfo());
-            OrginHomoMineralDt = AccessDb.Query(new HomogeneousMineralInfo());
+            OrginHeteMineralDt = AccessDB.Query(new HeterogeneousMineralInfo());
+            OrginHomoMineralDt = AccessDB.Query(new HomogeneousMineralInfo());
             OrginHeteMineralDt.TableName = "非均质矿物";
             OrginHomoMineralDt.TableName = "均质矿物";
             OrginMineralDs.Tables.Add(OrginHeteMineralDt.Copy());
@@ -83,30 +92,156 @@ namespace Mineral
             //AccessDb.Add(heterogeneousMineral);
         }
         /// <summary>
-        /// 通过DataSet将DataGrid初始化
+        /// 通过DataSet将DataGrid填充
         /// </summary>
         /// <param name="ds"></param>
         private void InitDataGridByDataSet(DataSet ds)
-        {/*
-            displays = new ObservableCollection<CDisplay>();
+        {
+            OrginMinerals = new ObservableCollection<IMineral>();
+            OrginHeteMinerals = new ObservableCollection<IMineral>();
+            OrginHomoMinerals = new ObservableCollection<IMineral>();
+
             for (int i = 0; i < ds.Tables.Count; i++)
             {
                 for (int j = 0; j < ds.Tables[i].Rows.Count; j++)
                 {
-                    displays.Add(new CDisplay()
+                    if (ds.Tables[i].TableName.Contains("非均质矿物"))
                     {
-                        ChineseName = ds.Tables[i].Rows[j]["ChineseName"].ToString()
-                    });
+                        HeterogeneousMineralInfo hete = (HeterogeneousMineralInfo)FillInfoByDataRow(ds.Tables[i].Rows[j], 2);
+                        OrginMinerals.Add(hete);
+                        OrginHeteMinerals.Add(hete);
+                    }
+                    else
+                    {
+                        HomogeneousMineralInfo homo = (HomogeneousMineralInfo)FillInfoByDataRow(ds.Tables[i].Rows[j], 1);
+                        OrginMinerals.Add(homo);
+                        OrginHomoMinerals.Add(homo);
+                    }
                 }
             }
-            this.DataGrid.ItemsSource = displays;*/
+            this.DataGrid.ItemsSource = OrginMinerals;
+        }
+
+        /// <summary>
+        /// 根据DataRow把他变为实体
+        /// </summary>
+        /// <param name="dr"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private IMineral FillInfoByDataRow(DataRow dr,int type)
+        {
+            if (type==1)
+            {
+                return new HomogeneousMineralInfo()
+                {
+                    ID = int.Parse(dr["ID"].ToString()),
+                    ChineseName = dr["ChineseName"].ToString(),
+                    EnglishName = dr["EnglishName"].ToString(),
+                    ChemicalFormula = dr["ChemicalFormula"].ToString(),
+                    Syngony = dr["Syngony"].ToString(),
+                    NonUniformity = dr["NonUniformity"].ToString(),
+                    Reflectivity = dr["Reflectivity"].ToString(),
+                    Hardness = dr["Hardness"].ToString(),
+                    ReflectionColor = dr["ReflectionColor"].ToString(),
+                    Rr = float.Parse(dr["Rr"].ToString()),
+                    DRr = dr["DRr"].ToString(),
+                    InternalReflection = dr["InternalReflection"].ToString(),
+                    Origin = dr["Origin"].ToString(),
+                    IMK = dr["IMK"].ToString()
+                };
+            }
+            else
+            {
+                return new HeterogeneousMineralInfo()
+                {
+                    ID = int.Parse(dr["ID"].ToString()),
+                    ChineseName = dr["ChineseName"].ToString(),
+                    EnglishName = dr["EnglishName"].ToString(),
+                    ChemicalFormula = dr["ChemicalFormula"].ToString(),
+                    Syngony = dr["Syngony"].ToString(),
+                    NonUniformity = dr["NonUniformity"].ToString(),
+                    Reflectivity = dr["Reflectivity"].ToString(),
+                    Hardness = dr["Hardness"].ToString(),
+                    ReflectionColor = dr["ReflectionColor"].ToString(),
+                    Bireflection = dr["Bireflection"].ToString(),
+                    Ar = float.Parse(dr["Ar"].ToString()),
+                    DAr = dr["DAr"].ToString(),
+                    Rs = dr["Rs"].ToString(),
+                    Ps = dr["Ps"].ToString(),
+                    DRr = dr["DRr"].ToString(),
+                    ReflectionDAR = dr["ReflectionDAR"].ToString(),
+                    InternalReflection = dr["InternalReflection"].ToString(),
+                    Origin = dr["Origin"].ToString(),
+                    IMK = dr["IMK"].ToString(),
+                };
+            }
+            
+        }
+
+        /// <summary>
+        /// 通过文本将实体填充
+        /// </summary>
+        /// <param name="type"></param>
+        private void FillEntityByTextBox(int type)
+        {
+            if (type == 1)
+            {
+                HomogeneousMineralInfo homo = curMineral as HomogeneousMineralInfo;
+                homo.ID = 0;
+                homo.ChineseName = this.Txt_ChineseName.Text.Trim();
+                homo.EnglishName = this.Txt_EnglishName.Text.Trim();
+                homo.ChemicalFormula = this.Txt_ChemicalFormula.Text.Trim();
+                homo.Syngony = this.Txt_Syngony.Text.Trim();
+                homo.NonUniformity = this.Txt_NonUniformity.Text.Trim();
+                homo.Reflectivity = this.Txt_InternalReflection.Text.Trim();
+                homo.Hardness = this.Txt_Hardness.Text.Trim();
+                homo.ReflectionColor = this.Txt_ReflectionColor.Text.Trim();
+                if (!string.IsNullOrEmpty(this.Txt_Rr.Text.Trim()))
+                {
+                    homo.Rr = float.Parse(this.Txt_Rr.Text.Trim().Replace("°", null));
+                }
+                homo.DRr = this.Txt_DRr.Text.Trim();
+                homo.InternalReflection = this.Txt_InternalReflection.Text.Trim();
+                homo.Origin = this.Txt_Origin.Text.Trim();
+                homo.IMK = this.Txt_IMK.Text.Trim();
+                curMineral = homo;
+            }
+            else
+            {
+                HeterogeneousMineralInfo hete = curMineral as HeterogeneousMineralInfo;
+                hete.ID = 0;
+                hete.ChineseName = this.Txt_ChineseName_No.Text.Trim();
+                hete.EnglishName = this.Txt_EnglishName_No.Text.Trim();
+                hete.ChemicalFormula = this.Txt_ChemicalFormula_No.Text.Trim();
+                hete.Syngony = this.Txt_Syngony_No.Text.Trim();
+                hete.NonUniformity = this.Txt_NonUniformity_No.Text.Trim();
+                hete.Reflectivity = this.Txt_InternalReflection_No.Text.Trim();
+                hete.Hardness = this.Txt_Hardness_No.Text.Trim();
+                hete.ReflectionColor = this.Txt_ReflectionColor_No.Text.Trim();
+                hete.Bireflection= this.Txt_ReflectionColor_No.Text.Trim();
+                if (!string.IsNullOrEmpty(this.Txt_Ar_No.Text.Trim()))
+                {
+                    hete.Ar = float.Parse(this.Txt_Ar_No.Text.Trim().Replace("°", null));
+                }
+                hete.DAr= this.Txt_DAr_No.Text.Trim();
+                hete.Rs= this.Txt_Rs_No.Text.Trim();
+                hete.Ps= this.Txt_Ps_No.Text.Trim();
+                hete.DRr = this.Txt_DRr_No.Text.Trim();
+                hete.ReflectionDAR = this.Txt_ReflectionDAR_No.Text.Trim();
+                hete.InternalReflection = this.Txt_InternalReflection_No.Text.Trim();
+                hete.Origin = this.Txt_Origin_No.Text.Trim();
+                hete.IMK = this.Txt_IMK_No.Text.Trim();
+                curMineral = hete;
+            }
+
         }
         /// <summary>
-        /// 通过实体将文本框初始化
+        /// 通过实体将文本框填充
         /// </summary>
         /// <param name="mineral"></param>
         private void InitTextByEntity(IMineral mineral)
         {
+            curMineral = mineral;
             if (mineral.mineralType == 1)//若是均质矿物
             {
                 HomogeneousMineralInfo homogeneousMineral = (HomogeneousMineralInfo)mineral;
@@ -123,6 +258,7 @@ namespace Mineral
                 this.Txt_InternalReflection.Text = homogeneousMineral.InternalReflection;
                 this.Txt_Origin.Text = homogeneousMineral.Origin;
                 this.Txt_IMK.Text = homogeneousMineral.IMK;
+                ShowHomoMineralInfoView();
             }
             else if (mineral.mineralType == 2)//若是非均质矿物
             {
@@ -145,7 +281,93 @@ namespace Mineral
                 this.Txt_InternalReflection_No.Text = heterogeneousMineral.InternalReflection;
                 this.Txt_Origin_No.Text = heterogeneousMineral.Origin;
                 this.Txt_IMK_No.Text = heterogeneousMineral.IMK;
+                ShowHeteMineralInfoView();
             }
+        }
+
+        /// <summary>
+        /// 清空展示栏中的文本信息
+        /// </summary>
+        /// <returns></returns>
+        private void ClealTextProperty()
+        {
+            #region  均质控件
+          
+            this.Txt_ChineseName.Text = String.Empty;
+            this.Txt_EnglishName.Text = String.Empty;
+            this.Txt_ChemicalFormula.Text = String.Empty;
+            this.Txt_Syngony.Text = String.Empty;
+            this.Txt_NonUniformity.Text = String.Empty;
+            this.Txt_Reflectivity.Text = String.Empty;
+            this.Txt_Hardness.Text = String.Empty;
+            this.Txt_ReflectionColor.Text = String.Empty;
+            this.Txt_Rr.Text = String.Empty;
+            this.Txt_DRr.Text = String.Empty;
+            this.Txt_InternalReflection.Text = String.Empty;
+            this.Txt_Origin.Text = String.Empty;
+            this.Txt_IMK.Text = String.Empty;
+            #endregion
+
+            #region  非均质控件
+         
+
+            this.Txt_ChineseName_No.Text = String.Empty;
+            this.Txt_EnglishName_No.Text = String.Empty;
+            this.Txt_ChemicalFormula_No.Text = String.Empty;
+            this.Txt_Syngony_No.Text = String.Empty;
+            this.Txt_NonUniformity_No.Text = String.Empty;
+            this.Txt_Reflectivity_No.Text = String.Empty;
+            this.Txt_Hardness_No.Text = String.Empty;
+            this.Txt_ReflectionColor_No.Text = String.Empty;
+            this.Txt_Bireflection_No.Text = String.Empty;
+            this.Txt_Ar_No.Text = String.Empty;
+            this.Txt_DAr_No.Text = String.Empty;
+            this.Txt_Rs_No.Text = String.Empty;
+            this.Txt_Ps_No.Text = String.Empty;
+            this.Txt_DRr_No.Text = String.Empty;
+            this.Txt_ReflectionDAR_No.Text = String.Empty;
+            this.Txt_InternalReflection_No.Text = String.Empty;
+            this.Txt_Origin_No.Text = String.Empty;
+            this.Txt_IMK_No.Text = String.Empty;
+            #endregion
+        }
+        /// <summary>
+        /// 初始化检索栏信息
+        /// </summary>
+        /// <returns></returns>
+        private void ClealComboBoxProperty()
+        {
+            #region  均质控件
+            this.ComboBox_DAR.SelectedIndex = 0;
+            this.ComboBox_InternalReflection.SelectedIndex = 0;
+            this.ComboBox_ReflectionColor.SelectedIndex = 0;
+            this.ComboBox_ReflectivityClassify.SelectedIndex = 0;
+            this.ComboBox_ScratchHardness.SelectedIndex = 0;
+            this.Txt_VisualReflectivity.Text = String.Empty;
+            this.Txt_VickersHardness.Text = String.Empty;
+            this.Txt_Rr1.Text = String.Empty;
+
+           
+            #endregion
+
+            #region  非均质控件
+            this.ComboBox_Bireflection_no.SelectedIndex = 0;
+            this.ComboBox_DAR_no.SelectedIndex = 0;
+            this.ComboBox_DAr_no.SelectedIndex = 0;
+            this.ComboBox_Heterogeneity_no.SelectedIndex = 0;
+            this.ComboBox_InternalReflection_no.SelectedIndex = 0;
+            this.ComboBox_MultipleDAR_no.SelectedIndex = 0;
+            this.ComboBox_Ps_no.SelectedIndex = 0;
+            this.ComboBox_ReflectionColor_no.SelectedIndex = 0;
+            this.ComboBox_ReflectivityClassify_no.SelectedIndex = 0;
+            this.ComboBox_Rs_no.SelectedIndex = 0;
+            this.ComboBox_ScratchHardness_no.SelectedIndex = 0;
+            this.Txt_VickersHardness_no.Text = String.Empty;
+            this.Txt_LongAxis_no.Text = String.Empty;
+            this.Txt_ShortAxis_no.Text = String.Empty;
+            this.Txt_Ar_no.Text = String.Empty;
+
+            #endregion
         }
         private void Btn_ExportToDB_Click(object sender, RoutedEventArgs e)
         {
@@ -157,6 +379,407 @@ namespace Mineral
                 MessageBox.Show(ExcelHelper.ExportDataToAccess(dlg.FileName, OrginMineralDs));
             }
 
+        }
+
+        private void DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            if (this.DataGrid.CurrentItem==null)
+            {
+                return;
+            }
+            //判断选择的是行数是属于非均质还是均质
+            if (this.DataGrid.CurrentItem.GetType().Name.Equals("HomogeneousMineralInfo"))
+            {
+                
+                HomogeneousMineralInfo homo = this.DataGrid.CurrentItem as HomogeneousMineralInfo;
+                foreach (HomogeneousMineralInfo mineral in OrginHomoMinerals)
+                {
+                    if (mineral.ChineseName == homo.ChineseName)
+                    {
+                        curMineral = mineral;
+                        InitTextByEntity(curMineral);
+                    }
+                }
+            }
+            else if (this.DataGrid.CurrentItem.GetType().Name.Equals("HeterogeneousMineralInfo"))
+            {
+                HeterogeneousMineralInfo hete = this.DataGrid.CurrentItem as HeterogeneousMineralInfo;
+                foreach (HeterogeneousMineralInfo mineral in OrginHeteMinerals)
+                {
+                    if (mineral.ChineseName == hete.ChineseName)
+                    {
+                        curMineral = mineral;
+                        InitTextByEntity(curMineral);
+                    }
+                }
+            }
+        }
+
+        #region 视图切换显示 
+        /// <summary>
+        /// 显示非均质矿物信息视图
+       /// </summary>
+        private void ShowHeteMineralInfoView()
+        {
+            Viewflag = 2;
+            this.Border_Home.Visibility = Visibility.Hidden;
+            this.StackPanel_Item.Visibility = Visibility.Hidden;
+            this.Border_Homo.Visibility = Visibility.Hidden;
+            this.Border_Hete.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// 显示均质矿物信息视图
+        /// </summary>
+        private void ShowHomoMineralInfoView()
+        {
+            Viewflag = 1;
+            this.Border_Home.Visibility = Visibility.Hidden;
+            this.StackPanel_Item.Visibility = Visibility.Hidden;
+            this.Border_Hete.Visibility = Visibility.Hidden;
+            this.Border_Homo.Visibility = Visibility.Visible;
+        }
+        /// <summary>
+        /// 显示主页视图
+        /// </summary>
+        private void ShowHomeView()
+        {
+            Viewflag = 0;
+            this.StackPanel_Item.Visibility = Visibility.Hidden;
+            this.Border_Hete.Visibility = Visibility.Hidden;
+            this.Border_Homo.Visibility = Visibility.Hidden;
+            this.Border_Home.Visibility = Visibility.Visible;
+        }
+        #endregion
+
+        private void Btn_AddMineral_Click(object sender, RoutedEventArgs e)
+        {
+            this.DataGrid.SelectedItem = null;
+            ClealComboBoxProperty();
+            ClealTextProperty();
+            IsAdd = true;
+            if (Viewflag==1)
+            {
+            curMineral=new HomogeneousMineralInfo();
+            }
+            else if(Viewflag==2)
+            {
+                curMineral = new HeterogeneousMineralInfo();
+            }
+            else
+            {
+                MessageBox.Show("请先确定添加的种类！");
+            }
+        }
+
+        private void Txt_QueryByName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Dictionary<string, string> paramters=new Dictionary<string, string>();
+            string name = ControlHelper.FindVisualChildItem<TextBox>(sender as TextBox, "Txt_QueryByName").Text.Trim();
+            if (!String.IsNullOrEmpty(name))
+            {
+                paramters.Add("ChineseName", name);
+                //paramters.Add("EnglishName", name);
+                //paramters.Add("ChemicalFormula", name);
+            }
+            QueryByParamters(paramters,OrginMinerals);
+            paramters.Remove("ChineseName");
+            //paramters.Remove("EnglishName");
+            //paramters.Remove("ChemicalFormula");
+        }
+      
+
+      
+        /// <summary>
+        /// 通过参数查询
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="myMinerals"></param>
+        private void QueryByParamters(Dictionary<string, string> param, ObservableCollection<IMineral> myMinerals)
+        {
+            ObservableCollection<IMineral>list=new ObservableCollection<IMineral>();
+            if (param.Count != 0)
+            {
+                int paramsNum = 0; //判断参数是否用完
+                this.DataGrid.ItemsSource = null;
+                this.DataGrid.Items.Clear();
+                foreach (IMineral mineral in myMinerals)
+                {
+                    foreach (var item in param)
+                    {
+                        paramsNum++;
+                        if (mineral.mineralType==1)//表示均质矿物
+                        {
+                           Dictionary<String, Object> map =MapHelper.ToMap(mineral as HomogeneousMineralInfo);
+                           if (!map[item.Key].ToString().Contains(item.Value))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                if (paramsNum == param.Count)
+                                {
+                                    list.Add(mineral as HomogeneousMineralInfo);
+                                }
+                            }
+                        }
+                        else if (mineral.mineralType == 2)//表示非均质矿物
+                        {
+                            Dictionary<String, Object> map = MapHelper.ToMap(mineral as HeterogeneousMineralInfo);
+                            if (!map[item.Key].ToString().Contains(item.Value))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                if (paramsNum == param.Count)
+                                {
+                                    list.Add(mineral as HeterogeneousMineralInfo);
+                                }
+                            }
+                        }
+                      
+                    }
+                    paramsNum = 0;
+                }
+                this.DataGrid.ItemsSource = list;
+                FillTextProperty();
+            }
+        }
+
+        /// <summary>
+        /// 根据DataGrid的首行填充
+        /// </summary>
+        private void FillTextProperty()
+        {
+            if (this.DataGrid.Items.Count > 0)
+            {
+                InitTextByEntity(this.DataGrid.Items[0] as IMineral);
+            }
+            else
+            {
+              ClealTextProperty();  
+            }
+        }
+
+  
+
+        private void ComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            if (comboBox.SelectedIndex > 0)
+            {
+                string value = comboBox.Text.Trim().Replace("：", null);
+                string key = comboBox.Tag.ToString();
+                if (!paramters_Hete.ContainsKey(key))
+                    {
+                        paramters_Hete.Add(key, value);
+                    }
+                    else
+                    {
+                        paramters_Hete[key] = value;
+                    }
+                QueryByParamters(paramters_Hete, OrginHeteMinerals);
+            }
+        }
+        private void ComboBox_homo_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            if (comboBox.SelectedIndex > 0)
+            {
+                string value = comboBox.Text.Trim().Replace("：", null);
+                string key = comboBox.Tag.ToString();
+                if (!paramters_Hoto.ContainsKey(key))
+                {
+                    paramters_Hoto.Add(key, value);
+                }
+                else
+                {
+                    paramters_Hoto[key] = value;
+                }
+                QueryByParamters(paramters_Hoto, OrginHomoMinerals);
+            }
+        }
+        private void Txt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (!string.IsNullOrEmpty(textBox.Text.Trim()))
+            {
+                string value = textBox.Text.Trim();
+                string key = textBox.Tag.ToString();
+                if (!paramters_Hete.ContainsKey(key))
+                {
+                    paramters_Hete.Add(key, value);
+                }
+                else
+                {
+                    paramters_Hete[key] = value;
+                }
+                QueryByParamters(paramters_Hete, OrginHeteMinerals);
+            }
+        }
+        private void Txt_homo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (!string.IsNullOrEmpty(textBox.Text.Trim()))
+            {
+                string value = textBox.Text.Trim();
+                string key = textBox.Tag.ToString();
+                if (!paramters_Hoto.ContainsKey(key))
+                {
+                    paramters_Hoto.Add(key, value);
+                }
+                else
+                {
+                    paramters_Hoto[key] = value;
+                }
+                QueryByParamters(paramters_Hoto, OrginHomoMinerals);
+            }
+        }
+
+        private void Btn_UpdateMineral_Click(object sender, RoutedEventArgs e)
+        {
+            if (curMineral==null)
+            {
+                return;
+            }
+            if (Viewflag == 1)//表示是均质矿物
+            { 
+                HomogeneousMineralInfo homo=curMineral as HomogeneousMineralInfo;
+                string str = homo.ChineseName;
+                if (!String.IsNullOrEmpty(str))
+                {
+                    FillEntityByTextBox(Viewflag);
+                    if (IsAdd)
+                    {
+                        DataRow[] dataRow = OrginHomoMineralDt.Select("ChineseName='" + str + "'");
+                        if (dataRow.Length > 0)
+                        {
+                            MessageBox.Show("已存在  ‘" + str + "’  矿物");
+                            modifyNum++;
+                        }
+                        else
+                        {
+                            AccessDB.Add(curMineral);
+                            Window_Loaded(null, null);
+                            modifyNum = 0;
+                        }
+                        IsAdd = false;
+                    }
+                    else
+                    {
+                        if (modifyNum == 0)
+                        {
+                            DataRow[] myr = OrginHomoMineralDt.Select("ChineseName='" + str + "'");
+                            if (myr.Length > 0)
+                            {
+                                //重新从数据库提取对应的ID
+                                DataTable myTable = AccessDB.Query(new HomogeneousMineralInfo());
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("已存在  ‘" + str + "’  矿物");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("矿物名字不能为空哦");
+                }
+            }
+            else if (Viewflag == 2)//表示是非均质矿物
+            {
+                HeterogeneousMineralInfo homo = curMineral as HeterogeneousMineralInfo;
+                string str = homo.ChineseName;
+                if (!String.IsNullOrEmpty(str))
+                {
+                    FillEntityByTextBox(Viewflag);
+                    if (IsAdd)
+                    {
+                        DataRow[] dataRow = OrginHeteMineralDt.Select("ChineseName='" + str + "'");
+                        if (dataRow.Length > 0)
+                        {
+                            MessageBox.Show("已存在  ‘" + str + "’  矿物");
+                            modifyNum++;
+                        }
+                        else
+                        {
+                            AccessDB.Add(curMineral);
+                            Window_Loaded(null, null);
+                            modifyNum = 0;
+                        }
+                        IsAdd = false;
+                    }
+                    else
+                    {
+                        if (modifyNum == 0)
+                        {
+                            DataRow[] myr = OrginHeteMineralDt.Select("ChineseName='" + str + "'");
+                            if (myr.Length > 0)
+                            {
+                                //重新从数据库提取对应的ID
+                                DataTable myTable = AccessDB.Query(new HeterogeneousMineralInfo());
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("已存在  ‘" + str + "’  矿物");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("矿物名字不能为空哦");
+                }
+            }
+        }
+
+        private void Btn_DelectMineral_Click(object sender, RoutedEventArgs e)
+        {
+            if (curMineral == null)
+            {
+                return;
+            }
+            if (Viewflag == 1) //表示是均质矿物
+            {
+                string name = (curMineral as HomogeneousMineralInfo).ChineseName;
+                if (!String.IsNullOrEmpty(name))
+                {
+                    if (MessageBox.Show("确认删除  '" + name + "'  ?", "此删除不可恢复", MessageBoxButton.YesNo) ==
+                        MessageBoxResult.Yes)
+                    {
+                        AccessDB.DeleteByEntity(curMineral);
+                        DataRow[] myRow = OrginHomoMineralDt.Select("ChineseName='" + name + "'");
+                        foreach (DataRow item in myRow)
+                        {
+                            OrginHomoMineralDt.Rows.Remove(item);
+                            OrginMineralDs.Tables["均质矿物"].Rows.Remove(item);
+                        }
+                        InitDataGridByDataSet(OrginMineralDs);
+                        FillTextProperty();
+                    }
+                }
+            }
+            else if (Viewflag == 2) //表示是非均质矿物
+            {
+                string name = (curMineral as HeterogeneousMineralInfo).ChineseName;
+                if (!String.IsNullOrEmpty(name))
+                {
+                    if (MessageBox.Show("确认删除  '" + name + "'  ?", "此删除不可恢复", MessageBoxButton.YesNo) ==
+                        MessageBoxResult.Yes)
+                    {
+                        AccessDB.DeleteByEntity(curMineral);
+                        DataRow[] myRow = OrginHeteMineralDt.Select("ChineseName='" + name + "'");
+                        foreach (DataRow item in myRow)
+                        {
+                            OrginHeteMineralDt.Rows.Remove(item);
+                            OrginMineralDs.Tables["非均质矿物"].Rows.Remove(item);
+                        }
+                        InitDataGridByDataSet(OrginMineralDs);
+                        FillTextProperty();
+                    }
+                }
+            }
         }
     }
 }

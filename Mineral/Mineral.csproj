@@ -67,6 +67,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\AccessDB.cs" />
+    <Compile Include="Helper\ControlHelper.cs" />
+    <Compile Include="Helper\MapHelper.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />
     <Compile Include="Common\HeterogeneousMineralInfo.cs" />
     <Compile Include="Common\HomogeneousMineralInfo.cs" />

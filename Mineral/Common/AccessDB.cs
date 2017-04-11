@@ -8,9 +8,9 @@ using Mineral.Helper;
 
 namespace Mineral.Common
 {
-    class AccessDb
+    class AccessDB
     {
-        public AccessDb()
+        public AccessDB()
         {
         }
         
