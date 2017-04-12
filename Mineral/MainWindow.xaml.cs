@@ -753,8 +753,8 @@ namespace Mineral
         /// <param name="dt">要添加的矿物所属表</param>
         /// <param name="chineseName">矿物名称 用来检测是否重名</param>
         /// <param name="mineral">要添加的矿物信息</param>
-        /// <param name="collection">更新DataGrid的参数</param>
-        private void AddMineralToDB(DataTable dt, string chineseName, IMineral mineral,ObservableCollection<IMineral> collection )
+        /// <param name="type">决定更新DataGrid的参数</param>
+        private void AddMineralToDB(DataTable dt, string chineseName, IMineral mineral, int type)
         {
             DataRow[] dataRow = dt.Select("ChineseName='" + chineseName + "'");
             if (dataRow.Length > 0)
@@ -769,7 +769,18 @@ namespace Mineral
                 //DataGrid.ItemsSource正在使用时无法操作
                 InitDataTable();
                 UpdateCollections();
-                InitDataGridByCollection(collection);
+                if (type == 1)
+                {
+                    InitDataGridByCollection(OrginHomoMinerals);
+                }
+                else if (type == 2)
+                {
+                    InitDataGridByCollection(OrginHeteMinerals);
+                }
+                else
+                {
+                    InitDataGridByCollection(OrginMinerals);
+                }
                 modifyNum = 0;
             }
             IsAdd = false;
@@ -796,7 +807,7 @@ namespace Mineral
                 {
                     if (IsAdd)
                     {
-                        AddMineralToDB(OrginHomoMineralDt, str, curMineral,OrginHomoMinerals);
+                        AddMineralToDB(OrginHomoMineralDt, str, curMineral,1);
                     }
                     else
                     {
@@ -814,7 +825,7 @@ namespace Mineral
                         }
                         else
                         {
-                            AddMineralToDB(OrginHomoMineralDt, str, curMineral, OrginHomoMinerals);
+                            AddMineralToDB(OrginHomoMineralDt, str, curMineral, 1);
                         }
                     }
                 }
@@ -830,7 +841,7 @@ namespace Mineral
                 {
                     if (IsAdd)
                     {
-                        AddMineralToDB(OrginHeteMineralDt,str,curMineral,OrginHeteMinerals);
+                        AddMineralToDB(OrginHeteMineralDt,str,curMineral,2);
                     }
                     else
                     {
@@ -848,7 +859,7 @@ namespace Mineral
                         }
                         else
                         {
-                            AddMineralToDB(OrginHeteMineralDt, str, curMineral, OrginHeteMinerals);
+                            AddMineralToDB(OrginHeteMineralDt, str, curMineral, 2);
                         }
                     }
                 }
@@ -893,12 +904,7 @@ namespace Mineral
                         MessageBoxResult.Yes)
                     {
                         AccessDB.DeleteByEntity(curMineral);
-                        DataRow[] myRow = OrginHomoMineralDt.Select("ChineseName='" + name + "'");
-                        foreach (DataRow item in myRow)
-                        {
-                            OrginHomoMineralDt.Rows.Remove(item);
-                            OrginMineralDs.Tables["均质矿物"].Rows.Remove(item);
-                        }
+                        InitDataTable();
                         UpdateCollections();
                         InitDataGridByCollection(OrginHomoMinerals);
                         FillTextProperty();
@@ -914,12 +920,7 @@ namespace Mineral
                         MessageBoxResult.Yes)
                     {
                         AccessDB.DeleteByEntity(curMineral);
-                        DataRow[] myRow = OrginHeteMineralDt.Select("ChineseName='" + name + "'");
-                        foreach (DataRow item in myRow)
-                        {
-                            OrginHeteMineralDt.Rows.Remove(item);
-                            OrginMineralDs.Tables["非均质矿物"].Rows.Remove(item);
-                        }
+                        InitDataTable();
                         UpdateCollections();
                         InitDataGridByCollection(OrginHeteMinerals);
                         FillTextProperty();

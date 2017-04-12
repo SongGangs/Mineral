@@ -63,7 +63,7 @@ namespace Mineral.Common
             string sql =
                 String.Format(
                     "DELETE FROM " + (mineral.mineralType == 1 ? "HomogeneousMineral" : "HeterogeneousMineral") +
-                    " WHERE mineral.Name='{0}'",
+                    " WHERE ChineseName='{0}'",
                     (mineral.mineralType == 1
                         ? ((HomogeneousMineralInfo) mineral).ChineseName
                         : ((HeterogeneousMineralInfo) mineral).ChineseName));
