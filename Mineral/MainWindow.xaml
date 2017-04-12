@@ -36,7 +36,7 @@
         </DataGrid>
         <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
             <StackPanel>
-                <Label Content="logo" Margin="20,50,19.8,0" Height="217" Background="#FFC12B2B" />
+                <Label Content="logo" Margin="0,50,0,0" Height="217" Background="#FFC12B2B" />
                 <TextBox Name="Txt_QueryByName" Template="{StaticResource QueryTxtTemplate}" Height="45" Width="300"
                          Margin="0,100,400,0" ToolTip="请输入中文、英文、化学式进行查询" TextChanged="Txt_QueryByName_TextChanged" />
                 <Button Name="showItemBtn" Template="{StaticResource SelectItemBtnTemplate}" Width="300" Height="45"
