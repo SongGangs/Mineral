@@ -84,7 +84,7 @@ namespace Mineral.Common
                 HomogeneousMineralInfo homogeneousMineral = (HomogeneousMineralInfo) mineral;
                 string sql =
                     String.Format(
-                          "UPDATE HeterogeneousMineral SET ChineseName='{0}',EnglishName='{1}',ChemicalFormula='{2}',Syngony='{3}',NonUniformity='{4}',Reflectivity='{5}',Hardness='{6}',ReflectionColor='{7}',Rr='{8},DRr='{9}',InternalReflection='{10}',Origin='{11}',IMK='{12}'  WHERE ID={13}",
+                          "UPDATE HomogeneousMineral SET ChineseName='{0}',EnglishName='{1}',ChemicalFormula='{2}',Syngony='{3}',NonUniformity='{4}',Reflectivity='{5}',Hardness='{6}',ReflectionColor='{7}',Rr='{8}',DRr='{9}',InternalReflection='{10}',Origin='{11}',IMK='{12}'  WHERE ID={13}",
                         homogeneousMineral.ChineseName, homogeneousMineral.EnglishName,
                         homogeneousMineral.ChemicalFormula, homogeneousMineral.Syngony,
                         homogeneousMineral.NonUniformity, homogeneousMineral.Reflectivity,
