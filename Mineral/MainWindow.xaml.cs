@@ -658,6 +658,11 @@ namespace Mineral
                 this.DataGrid.ItemsSource = list;
                 FillTextProperty();
             }
+            else
+            {
+                this.DataGrid.ItemsSource = myMinerals;
+                FillTextProperty();
+            }
         }
 
         /// <summary>
@@ -681,10 +686,10 @@ namespace Mineral
         private void ComboBox_DropDownClosed(object sender, EventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
+              string key = comboBox.Tag.ToString();
             if (comboBox.SelectedIndex > 0)
             {
                 string value = comboBox.Text.Trim().Replace("：", null);
-                string key = comboBox.Tag.ToString();
                 if (!paramters_Hete.ContainsKey(key))
                     {
                         paramters_Hete.Add(key, value);
@@ -693,16 +698,20 @@ namespace Mineral
                     {
                         paramters_Hete[key] = value;
                     }
-                QueryByParamters(paramters_Hete, OrginHeteMinerals);
             }
+            else
+            {
+                paramters_Hete.Remove(key);
+            }
+            QueryByParamters(paramters_Hete, OrginHeteMinerals);
         }
         private void ComboBox_homo_DropDownClosed(object sender, EventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
+            string key = comboBox.Tag.ToString();
             if (comboBox.SelectedIndex > 0)
             {
                 string value = comboBox.Text.Trim().Replace("：", null);
-                string key = comboBox.Tag.ToString();
                 if (!paramters_Hoto.ContainsKey(key))
                 {
                     paramters_Hoto.Add(key, value);
@@ -711,8 +720,12 @@ namespace Mineral
                 {
                     paramters_Hoto[key] = value;
                 }
-                QueryByParamters(paramters_Hoto, OrginHomoMinerals);
             }
+            else
+            {
+                paramters_Hoto.Remove(key);
+            }
+            QueryByParamters(paramters_Hoto, OrginHomoMinerals);
         }
 
         private void Txt_TextChanged(object sender, TextChangedEventArgs e)
