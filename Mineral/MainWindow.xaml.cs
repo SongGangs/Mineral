@@ -338,8 +338,9 @@ namespace Mineral
         /// <returns></returns>
         private void ClealComboBoxProperty()
         {
+            paramters_Hoto.Clear();
+            paramters_Hete.Clear();
             #region  均质控件
-
             this.ComboBox_DAR.SelectedIndex = 0;
             this.ComboBox_InternalReflection.SelectedIndex = 0;
             this.ComboBox_ReflectionColor.SelectedIndex = 0;
