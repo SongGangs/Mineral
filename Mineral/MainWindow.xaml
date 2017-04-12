@@ -20,6 +20,7 @@
         <StackPanel Grid.Column="0" Orientation="Horizontal" Background="#FF75F6F8">
             <Button Name="Btn_Forword" Template="{StaticResource HomeBtnTemplate}" Click="Btn_Forword_Click" ToolTip="首页"></Button>
             <Button Name="Btn_ReSet" Template="{StaticResource ReSetBtnTemplate}" ToolTip="重置" Click="Btn_ReSet_Click"></Button>
+            <Button Name="Btn_Media" Template="{StaticResource MediaBtnTemplate}" ToolTip="播放器" Click="Btn_Media_Click"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF0E7482">
             <Button Name="Btn_DelectMineral" Template="{StaticResource DelectMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_DelectMineral_Click"></Button>

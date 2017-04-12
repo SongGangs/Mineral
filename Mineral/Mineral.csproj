@@ -78,12 +78,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MediaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Style\MyStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MediaWindow.xaml.cs">
+      <DependentUpon>MediaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -121,15 +128,18 @@
     <Content Include="DB\Mineral.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Media\符山石.avi" />
+    <Resource Include="Images\choseFile.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\reset.png" />
+    <Resource Include="Images\media.png" />
     <Resource Include="Images\export.png" />
     <Resource Include="Images\add.png" />
     <Resource Include="Images\back.png" />
     <Resource Include="Images\delect.png" />
     <Resource Include="Images\down.png" />
     <Resource Include="Images\forword.png" />
-    <Resource Include="Images\home.png" />
     <Resource Include="Images\inquery.png" />
-    <Resource Include="Images\reset.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

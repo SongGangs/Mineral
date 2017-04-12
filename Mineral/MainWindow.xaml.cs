@@ -835,5 +835,11 @@ namespace Mineral
             }
             FillTextProperty();
         }
+
+        private void Btn_Media_Click(object sender, RoutedEventArgs e)
+        {
+            MediaWindow mediawindow = new MediaWindow();
+            mediawindow.Show();
+        }
     }
 }
