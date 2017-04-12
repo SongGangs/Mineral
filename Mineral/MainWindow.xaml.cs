@@ -116,7 +116,9 @@ namespace Mineral
         /// <param name="ds"></param>
         private void InitDataGridByCollection(ObservableCollection<IMineral> myCollectionminerals)
         {
+            
             this.DataGrid.ItemsSource = myCollectionminerals;
+            
         }
 
         /// <summary>
@@ -471,34 +473,7 @@ namespace Mineral
         }
         #endregion
 
-       
-        private void Txt_QueryByName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Dictionary<string, string> paramters=new Dictionary<string, string>();
-            string name = ControlHelper.FindVisualChildItem<TextBox>(sender as TextBox, "Txt_QueryByName").Text.Trim();
-            if (!String.IsNullOrEmpty(name))
-            {
-                if (IsNatural_Number(name))
-                {
-                    paramters.Add("EnglishName", name);
-                    paramters.Add("ChemicalFormula", name);
-                }
-                else
-                {
-                    paramters.Add("ChineseName", name);
-                }
-                QueryByParamters(paramters, OrginMinerals);
-                paramters.Remove("ChineseName");
-                paramters.Remove("EnglishName");
-                paramters.Remove("ChemicalFormula");
-            }
-            else
-            {
-                InitDataGridByCollection(OrginMinerals);
-            }
-            
-        }
-
+   
 
         /// <summary>
         /// 
@@ -975,6 +950,39 @@ namespace Mineral
         {
             MediaWindow mediawindow = new MediaWindow();
             mediawindow.Show();
+        }
+
+      
+
+        private void FindByNameButton_Click(object sender, RoutedEventArgs e)
+        {
+            Dictionary<string, string> paramters = new Dictionary<string, string>();
+            string name = ControlHelper.FindVisualChildItem<TextBox>(this.Txt_QueryByName, "Txt_QueryByName").Text.Trim();
+            if (!String.IsNullOrEmpty(name))
+            {
+                if (IsNatural_Number(name))
+                {
+                    paramters.Add("EnglishName", name);
+                    paramters.Add("ChemicalFormula", name);
+                }
+                else
+                {
+                    paramters.Add("ChineseName", name);
+                }
+                QueryByParamters(paramters, OrginMinerals);
+                paramters.Remove("ChineseName");
+                paramters.Remove("EnglishName");
+                paramters.Remove("ChemicalFormula");
+            }
+            else
+            {
+                InitDataGridByCollection(OrginMinerals);
+            }
+        }
+
+        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
         }
     }
 }
