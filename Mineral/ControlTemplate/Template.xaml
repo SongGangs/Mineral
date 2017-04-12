@@ -61,7 +61,17 @@
             <Label Content="非均质矿物" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#FFB03434"></Label>
         </Border>
     </ControlTemplate>
+    <!--播放器中控件样式-->
     <ControlTemplate x:Key="ChoseFileBtnTemplate" TargetType="{x:Type Button}">
         <Image Source="../Images/choseFile.png" Width="30"></Image>
+    </ControlTemplate>
+    <ControlTemplate x:Key="StopBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/stop.png" Width="20"></Image>
+    </ControlTemplate>
+    <ControlTemplate x:Key="PlayBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/play.png" Width="20"></Image>
+    </ControlTemplate>
+    <ControlTemplate x:Key="PauseBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/pause.png" Width="20"></Image>
     </ControlTemplate>
 </ResourceDictionary>

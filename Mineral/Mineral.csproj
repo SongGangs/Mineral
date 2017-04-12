@@ -67,6 +67,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\AccessDB.cs" />
+    <Compile Include="Common\ProgressConverter.cs" />
+    <Compile Include="Common\TimeConverter.cs" />
     <Compile Include="Helper\ControlHelper.cs" />
     <Compile Include="Helper\MapHelper.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />
@@ -128,6 +130,9 @@
     <Content Include="DB\Mineral.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\pause.png" />
+    <Resource Include="Images\play.png" />
+    <Resource Include="Images\stop.png" />
     <Content Include="Media\符山石.avi" />
     <Resource Include="Images\choseFile.png" />
     <Resource Include="Images\home.png" />
