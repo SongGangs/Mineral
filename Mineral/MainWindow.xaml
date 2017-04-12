@@ -129,16 +129,16 @@
                         </ComboBox>
                         <StackPanel Orientation="Horizontal" Margin="585,-30,0,0">
                             <Label VerticalContentAlignment="Center">维氏硬度：</Label>
-                            <TextBox Name="Txt_VickersHardness_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Hardness"></TextBox>
+                            <TextBox Name="Txt_VickersHardness_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Hardness2"></TextBox>
                         </StackPanel>
                         <StackPanel Width="332" Margin="30,15,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
                             <Label VerticalContentAlignment="Center">视觉反射率--长轴：</Label>
-                            <TextBox  Name="Txt_LongAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity"></TextBox>
+                            <TextBox  Name="Txt_LongAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity1"></TextBox>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="280,-30,0,0">
                             <Label  VerticalContentAlignment="Center" >视觉反射率--短轴：</Label>
-                            <TextBox Name="Txt_ShortAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity"></TextBox>
+                            <TextBox Name="Txt_ShortAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity2"></TextBox>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="500,-30,0,0">
@@ -264,18 +264,18 @@
                         </ComboBox>
                         <StackPanel Orientation="Horizontal" Margin="215,-30,0,0">
                             <Label VerticalContentAlignment="Center">维氏硬度：</Label>
-                            <TextBox Name="Txt_VickersHardness"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Hardness"></TextBox>
+                            <TextBox Name="Txt_VickersHardness"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Hardness2"></TextBox>
                         </StackPanel>
 
 
                         <StackPanel Orientation="Horizontal" Margin="400,-30,0,0">
                             <Label  VerticalContentAlignment="Center" >视觉反射率：</Label>
-                            <TextBox Name="Txt_VisualReflectivity"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Reflectivity"></TextBox>
+                            <TextBox Name="Txt_VisualReflectivity"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Reflectivity2"></TextBox>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="30,15,0,0">
                             <Label VerticalContentAlignment="Center">反射视旋转角Rr：</Label>
-                            <TextBox Name="Txt_Rr1"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Ar"></TextBox>
+                            <TextBox Name="Txt_Rr1"  Width="80" TextChanged="Txt_homo_TextChanged" Tag="Rr"></TextBox>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>

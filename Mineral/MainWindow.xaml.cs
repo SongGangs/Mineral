@@ -27,7 +27,6 @@ namespace Mineral
     {
         private ObservableCollection<IMineral> OrginHomoMinerals = null; //初始均质矿物集合
         private ObservableCollection<IMineral> OrginHeteMinerals = null; //初始非均质矿物集合
-        //private ObservableCollection<IMineral> curMinerals = null;//初始矿物集合
         private ObservableCollection<IMineral> OrginMinerals = null; //初始矿物集合
         private IMineral curMineral = null; //当前显示的矿物
         private DataTable OrginHomoMineralDt = null; //初始均质矿物的表
@@ -39,7 +38,7 @@ namespace Mineral
             //保存查询的参数Dictionary<类型, 实际值>---非均质
 
         private Dictionary<string, string> paramters_Hoto = new Dictionary<string, string>();
-            //保存查询的参数Dictionary<类型, 实际值>---非均质
+            //保存查询的参数Dictionary<类型, 实际值>---均质
 
         private bool IsAdd = false;
         private int modifyNum = 0;
@@ -80,6 +79,7 @@ namespace Mineral
 
         private void Btn_Forword_Click(object sender, RoutedEventArgs e)
         {
+            ControlHelper.FindVisualChildItem<TextBox>(this.Txt_QueryByName, "Txt_QueryByName").Text = String.Empty;
             UpdateCollections();
             InitDataGridByCollection(OrginMinerals);
             ShowHomeView();
@@ -477,18 +477,52 @@ namespace Mineral
             string name = ControlHelper.FindVisualChildItem<TextBox>(sender as TextBox, "Txt_QueryByName").Text.Trim();
             if (!String.IsNullOrEmpty(name))
             {
-                paramters.Add("ChineseName", name);
-                //paramters.Add("EnglishName", name);
-                //paramters.Add("ChemicalFormula", name);
+                if (IsNatural_Number(name))
+                {
+                    paramters.Add("EnglishName", name);
+                    paramters.Add("ChemicalFormula", name);
+                }
+                else
+                {
+                    paramters.Add("ChineseName", name);
+                }
+                QueryByParamters(paramters, OrginMinerals);
+                paramters.Remove("ChineseName");
+                paramters.Remove("EnglishName");
+                paramters.Remove("ChemicalFormula");
             }
-            QueryByParamters(paramters,OrginMinerals);
-            paramters.Remove("ChineseName");
-            //paramters.Remove("EnglishName");
-            //paramters.Remove("ChemicalFormula");
+            else
+            {
+                InitDataGridByCollection(OrginMinerals);
+            }
+            
         }
-      
 
-      
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputValue"></param>
+        /// <param name="orginValue"></param>
+        /// <param name="roat">上下浮动数</param>
+        /// <returns></returns>
+        private bool CompareVaule(string inputValue, string orginValue,double roat)
+        {
+            try
+            {
+                double maxValue = float.Parse(inputValue) * (1 + roat);
+                double minValue = float.Parse(inputValue) * (1 - roat);
+                double value = double.Parse(orginValue);
+                if (minValue > value || maxValue < value)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// 通过参数查询
         /// </summary>
@@ -510,30 +544,109 @@ namespace Mineral
                         if (mineral.mineralType==1)//表示均质矿物
                         {
                            Dictionary<String, Object> map =MapHelper.ToMap(mineral as HomogeneousMineralInfo);
-                           if (!map[item.Key].ToString().Contains(item.Value))
+                           if (item.Key == "Reflectivity2" || item.Key == "Hardness2" || item.Key == "Rr")
                             {
-                                break;
-                            }
-                            else
-                            {
+                                if (item.Key == "Hardness2" && !string.IsNullOrEmpty(item.Value))
+                                {
+                                    if (string.IsNullOrEmpty(map["Hardness"].ToString()))
+                                        break;
+                                    string str = map[item.Key.Replace("2", null)].ToString();
+                                    str = str.Substring(str.IndexOf("维氏硬度为") + 5,
+                                        str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
+                                    if (!CompareVaule(item.Value, str, 0.02))
+                                        break;
+                                }
+                                else if (item.Key == "Rr" && !string.IsNullOrEmpty(item.Value))
+                                {
+                                    if (!CompareVaule(item.Value, map[item.Key].ToString().Replace("°",null), 0.05))
+                                        break;
+                                }
+                                else if (!map[item.Key.Replace("2", null)].ToString().Contains(item.Value) && !string.IsNullOrEmpty(item.Value))
+                                {
+                                        break;
+                                }
                                 if (paramsNum == param.Count)
                                 {
                                     list.Add(mineral as HomogeneousMineralInfo);
+                                }
+                            }
+                            else
+                            {
+                                if (!map[item.Key].ToString().Contains(item.Value))
+                                {
+
+                                    if (item.Key != "EnglishName" )
+                                        break;
+                                }
+                                else
+                                {
+                                    if (item.Key == "EnglishName" && param.ContainsKey("ChemicalFormula"))
+                                    {
+                                        param.Remove("ChemicalFormula");
+                                    }
+                                    if (paramsNum == param.Count)
+                                    {
+                                        list.Add(mineral as HomogeneousMineralInfo);
+                                    }
                                 }
                             }
                         }
                         else if (mineral.mineralType == 2)//表示非均质矿物
                         {
                             Dictionary<String, Object> map = MapHelper.ToMap(mineral as HeterogeneousMineralInfo);
-                            if (!map[item.Key].ToString().Contains(item.Value))
+                            if (item.Key == "Reflectivity2" || item.Key == "Reflectivity1" || item.Key == "Hardness2" || item.Key == "Ar")
                             {
-                                break;
-                            }
-                            else
-                            {
+                                if (!string.IsNullOrEmpty(item.Value))
+                                {
+                                    if (item.Key == "Hardness2" )
+                                    {
+                                        if (string.IsNullOrEmpty(map["Hardness"].ToString()))
+                                            break;
+                                        string str = map[item.Key.Replace("2", null)].ToString();
+                                        str = str.Substring(str.IndexOf("维氏硬度为") + 5,
+                                            str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
+                                        if (!CompareVaule(item.Value, str, 0.02))
+                                            break;
+                                    }
+                                    else if (item.Key == "Ar" )
+                                    {
+                                        if (!CompareVaule(item.Value, map[item.Key].ToString().Replace("°", null), 0.05))
+                                            break;
+                                    }
+                                    else if (item.Key == "Reflectivity1")
+                                    {
+                                        if (!map[item.Key.Remove(item.Key.Length - 1)].ToString().Contains("长轴为"+item.Value))
+                                            break;
+                                    }
+                                    else if (item.Key == "Reflectivity2")
+                                    {
+                                        if (!map[item.Key.Remove(item.Key.Length - 1)].ToString().Contains("短轴为" + item.Value))
+                                            break;
+                                    } 
+                                }
                                 if (paramsNum == param.Count)
                                 {
                                     list.Add(mineral as HeterogeneousMineralInfo);
+                                }
+                            }
+                            else
+                            {
+                                if (!map[item.Key].ToString().Contains(item.Value))
+                                {
+
+                                    if (item.Key != "EnglishName")
+                                        break;
+                                }
+                                else
+                                {
+                                    if (item.Key == "EnglishName" && param.ContainsKey("ChemicalFormula"))
+                                    {
+                                        param.Remove("ChemicalFormula");
+                                    }
+                                    if (paramsNum == param.Count)
+                                    {
+                                        list.Add(mineral as HeterogeneousMineralInfo);
+                                    }
                                 }
                             }
                         }
@@ -600,41 +713,37 @@ namespace Mineral
                 QueryByParamters(paramters_Hoto, OrginHomoMinerals);
             }
         }
+
         private void Txt_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            if (!string.IsNullOrEmpty(textBox.Text.Trim()))
+            string value = textBox.Text.Trim();
+            string key = textBox.Tag.ToString();
+            if (!paramters_Hete.ContainsKey(key))
             {
-                string value = textBox.Text.Trim();
-                string key = textBox.Tag.ToString();
-                if (!paramters_Hete.ContainsKey(key))
-                {
-                    paramters_Hete.Add(key, value);
-                }
-                else
-                {
-                    paramters_Hete[key] = value;
-                }
-                QueryByParamters(paramters_Hete, OrginHeteMinerals);
+                paramters_Hete.Add(key, value);
             }
+            else
+            {
+                paramters_Hete[key] = value;
+            }
+            QueryByParamters(paramters_Hete, OrginHeteMinerals);
         }
+
         private void Txt_homo_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            if (!string.IsNullOrEmpty(textBox.Text.Trim()))
+            string value = textBox.Text.Trim();
+            string key = textBox.Tag.ToString();
+            if (!paramters_Hoto.ContainsKey(key))
             {
-                string value = textBox.Text.Trim();
-                string key = textBox.Tag.ToString();
-                if (!paramters_Hoto.ContainsKey(key))
-                {
-                    paramters_Hoto.Add(key, value);
-                }
-                else
-                {
-                    paramters_Hoto[key] = value;
-                }
-                QueryByParamters(paramters_Hoto, OrginHomoMinerals);
+                paramters_Hoto.Add(key, value);
             }
+            else
+            {
+                paramters_Hoto[key] = value;
+            }
+            QueryByParamters(paramters_Hoto, OrginHomoMinerals);
         }
 
         /// <summary>
@@ -828,12 +937,23 @@ namespace Mineral
             if (Viewflag==1)
             {
                 InitDataGridByCollection(OrginHomoMinerals);
+                FillTextProperty();
             }
             else if (Viewflag == 2)
             {
                 InitDataGridByCollection(OrginHeteMinerals);
+                FillTextProperty();
             }
-            FillTextProperty();
+        }
+       /// <summary>
+       /// 判断字符串是否是由英文和数字组成
+       /// </summary>
+       /// <param name="str"></param>
+       /// <returns></returns>
+        public bool IsNatural_Number(string str)
+        {
+            System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^[A-Za-z0-9]+$");
+            return reg1.IsMatch(str);
         }
 
         private void Btn_Media_Click(object sender, RoutedEventArgs e)
