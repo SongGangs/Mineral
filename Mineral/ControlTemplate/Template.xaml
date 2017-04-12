@@ -55,6 +55,9 @@
     <ControlTemplate x:Key="ReSetBtnTemplate" TargetType="{x:Type Button}">
         <Image Source="../Images/reset.png" Width="30"></Image>
     </ControlTemplate>
+    <ControlTemplate x:Key="MediaBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/media.png" Width="30"></Image>
+    </ControlTemplate>
     <ControlTemplate x:Key="RadiusBtnTemplate1" TargetType="{x:Type Button}">
         <Border   CornerRadius="15" BorderBrush="#FF86EFE2" BorderThickness="1" >
             <Label Content="均质矿物" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#FFB03434"></Label>
@@ -64,5 +67,8 @@
         <Border   CornerRadius="15" BorderBrush="#FF86EFE2" BorderThickness="1" >
             <Label Content="非均质矿物" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#FFB03434"></Label>
         </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="ChoseFileBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/choseFile.png" Width="30"></Image>
     </ControlTemplate>
 </ResourceDictionary>
