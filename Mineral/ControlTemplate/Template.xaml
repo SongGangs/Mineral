@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
     
     <ControlTemplate x:Key="SelectItemBtnTemplate" TargetType="{x:Type Button}">
         <Border BorderBrush="#FF75F6F8" BorderThickness="1.5" CornerRadius="15">

@@ -3,16 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainFrom" Height="700" Width="1050" Foreground="#FF030202" Background="White" MaxWidth="1050" MaxHeight="700" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Loaded="Window_Loaded">
     <Window.Resources>
+        <ControlTemplate x:Key="seacherBtn" TargetType="{x:Type Button}">
+            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="33,33,33,33" Name="PART_Background">
+                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="31" Margin="5" Width="30" />
+            </Border>
+        </ControlTemplate>
         <ControlTemplate x:Key="QueryTxtTemplate" TargetType="{x:Type TextBox}" >
             <Border BorderBrush="#FF75F6F8" BorderThickness="1.5" CornerRadius="15">
                 <StackPanel Orientation="Horizontal">
                     <TextBox Name="Txt_QueryByName"  BorderThickness="0" Background="Transparent"  Height="45" Width="300"  Foreground="#FF7C9495" FontSize="20" VerticalAlignment="Center"/>
-                    <Button Width="30" Margin="-30,0,0,0"  Click="FindByNameButton_Click" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" ClickMode="Release" Focusable="True">
+                    <Button Width="40" Margin="-40,0,0,0"  Click="FindByNameButton_Click" Template="{StaticResource seacherBtn}" Focusable="True">
                         <Image Source="Images/inquery.png"   ></Image>
                     </Button>
                 </StackPanel>
             </Border>
         </ControlTemplate>
+        
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
