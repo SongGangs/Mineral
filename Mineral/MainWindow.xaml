@@ -38,10 +38,10 @@
             <Button Name="Btn_Media" Template="{StaticResource MediaBtnTemplate}" ToolTip="播放器" Click="Btn_Media_Click"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF0E7482">
-            <Button Name="Btn_DelectMineral" Template="{StaticResource DelectMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_DelectMineral_Click"></Button>
-            <Button Name="Btn_AddMineral" Template="{StaticResource AddMineralBtnTemplate}" Click="Btn_AddMineral_Click" Height="27" VerticalAlignment="Top"></Button>
-            <Button Name="Btn_UpdateMineral" Template="{StaticResource UpdateMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_UpdateMineral_Click" ></Button>
-            <Button Name="Btn_ExportToDB" Template="{StaticResource ExportMineralBtnTemplate}" Margin="5,0,0,0" Click="Btn_ExportToDB_Click"></Button>
+            <Button Name="Btn_DelectMineral" Template="{StaticResource DelectMineralBtnTemplate}" Margin="1" Click="Btn_DelectMineral_Click" ToolTip="删除"></Button>
+            <Button Name="Btn_AddMineral" Template="{StaticResource AddMineralBtnTemplate}" Margin="1" Click="Btn_AddMineral_Click" ToolTip="添加"></Button>
+            <Button Name="Btn_UpdateMineral" Template="{StaticResource UpdateMineralBtnTemplate}" Margin="1" Click="Btn_UpdateMineral_Click" ToolTip="更新" ></Button>
+            <Button Name="Btn_ExportToDB" Template="{StaticResource ExportMineralBtnTemplate}" Margin="1" Click="Btn_ExportToDB_Click" ToolTip="导入"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="0.2,0.8,157.2,0.2" Grid.Row="1" />
         <DataGrid Name="DataGrid" Grid.Row="1" Grid.Column="2" Margin="0.4,0.8,0.2,0.2" IsReadOnly="True" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" SelectedCellsChanged="DataGrid_SelectedCellsChanged" LoadingRow="DataGrid_LoadingRow">
