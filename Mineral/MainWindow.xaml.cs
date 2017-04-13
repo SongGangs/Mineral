@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using Mineral.Common;
 using Mineral.Helper;
+using System.IO;
 
 namespace Mineral
 {
@@ -42,7 +43,6 @@ namespace Mineral
 
         private bool IsAdd = false;
         private int modifyNum = 0;
-        private string delete_modifyString; //要删、改的项
 
         public MainWindow()
         {
@@ -984,5 +984,60 @@ namespace Mineral
         {
             e.Row.Header = e.Row.GetIndex() + 1;
         }
+        /// <summary>
+        /// 拷贝均质模板
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void JunCopyTemplate_Click(object sender, RoutedEventArgs e)
+        {
+            string sourceStr = System.AppDomain.CurrentDomain.BaseDirectory+@"Data\Template\均质.xlsx";
+            if (File.Exists(sourceStr))
+            {
+                string targetStr = @"C:\Users\Administrator\Desktop\均质.xlsx";
+                FileInfo sourcefile = new FileInfo(sourceStr);
+                if (!File.Exists(targetStr))
+                {
+                    sourcefile.CopyTo(targetStr);
+                    MessageBox.Show("导出‘均质’模板成功，在桌面上已经存在！");
+                }
+                else
+                {
+                    MessageBox.Show("‘均质.xlsx’在桌面上已经存在！");
+                }
+            }
+            else
+            {
+                MessageBox.Show("不存在‘均质’模板");
+            }
+        }
+        /// <summary>
+        /// 拷贝非均质模板
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FeiCopyTemplate_Click(object sender, RoutedEventArgs e)
+        {
+            string sourceStr = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Template\非均质.xlsx";
+            if (File.Exists(sourceStr))
+            {
+                string targetStr = @"C:\Users\Administrator\Desktop\非均质.xlsx";
+                FileInfo sourcefile = new FileInfo(sourceStr);
+                if (File.Exists(targetStr))
+                {
+                    sourcefile.CopyTo(targetStr);
+                    MessageBox.Show("导出‘非均质’模板成功，在桌面上已经存在！");
+                }
+                else
+                {
+                    MessageBox.Show("‘非均质.xlsx’在桌面上已经存在！");
+                }
+            }
+            else
+            {
+                MessageBox.Show("不存在‘非均质’模板");
+            }
+        }
+
     }
 }

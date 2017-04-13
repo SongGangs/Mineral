@@ -22,7 +22,7 @@
         <StackPanel Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Width="45" Margin="0,0,2,0" Content="{Binding Value, Converter={StaticResource tConverter}, ElementName=sldProgress}" />
-                <Slider Name="sldProgress" Style="{StaticResource Slider_CustomStyle}" Width="450" ToolTip="进度条" Minimum="0" LargeChange="5" Value="{Binding ElementName=mediaElement, Path=Position, Mode=TwoWay, Converter={StaticResource pConverter}}" SmallChange="0" Height="10" />
+                <Slider Name="sldProgress" Style="{StaticResource Slider_CustomStyle}" Width="450" ToolTip="进度条" Minimum="0" LargeChange="15" Value="{Binding ElementName=mediaElement, Path=Position, Mode=TwoWay, Converter={StaticResource pConverter}}" SmallChange="0" Height="10" />
                 <Label Name="MaxTime" Width="45" Margin="2,0,0,0" Content="Auto"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">

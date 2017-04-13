@@ -18,7 +18,17 @@
                 </StackPanel>
             </Border>
         </ControlTemplate>
-        
+        <Style TargetType="{x:Type Menu}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Menu}">
+                        <Border BorderBrush="#FF7AEFEE" BorderThickness="1,0,0,0">
+                            <ItemsPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -36,6 +46,12 @@
             <Button Name="Btn_Forword" Template="{StaticResource HomeBtnTemplate}" Click="Btn_Forword_Click" ToolTip="首页"></Button>
             <Button Name="Btn_ReSet" Template="{StaticResource ReSetBtnTemplate}" ToolTip="重置" Click="Btn_ReSet_Click"></Button>
             <Button Name="Btn_Media" Template="{StaticResource MediaBtnTemplate}" ToolTip="播放器" Click="Btn_Media_Click"></Button>
+            <Menu Width="65">
+                <MenuItem Header="数据模板" Height="27">
+                    <MenuItem Header="均质模板" Name="JunCopyTemplate" Click="JunCopyTemplate_Click"></MenuItem>
+                    <MenuItem Header="非均质模板" Name="FeiCopyTemplate" Click="FeiCopyTemplate_Click"></MenuItem>
+                </MenuItem>
+            </Menu>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF0E7482">
             <Button Name="Btn_DelectMineral" Template="{StaticResource DelectMineralBtnTemplate}" Margin="1" Click="Btn_DelectMineral_Click" ToolTip="删除"></Button>
@@ -70,7 +86,7 @@
         <Border Name="Border_Hete" Visibility="Hidden" Grid.Row="1" BorderThickness="0,2,3,0"
                 BorderBrush="#FF1A9EE5">
             <StackPanel>
-                <GroupBox Header="均质矿物检索条目">
+                <GroupBox Header="非均质矿物检索条目">
                     <StackPanel >
                         <ComboBox Name="ComboBox_Heterogeneity_no" Style="{StaticResource ComboBoxStyle }"  Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="NonUniformity" >
                             <ComboBoxItem Content="非均性："/>
@@ -235,7 +251,7 @@
 
             </StackPanel>
         </Border>
-        <Border Name="Border_Homo" Grid.Row="1" Visibility="Hidden" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
+        <Border Name="Border_Homo" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
             <StackPanel>
                 <GroupBox Header="均质矿物检索条目">
                     <StackPanel Margin="0,10,0,0">
