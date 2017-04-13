@@ -68,6 +68,5 @@ namespace Mineral.Common
             this.Origin = Origin;
             this.IMK = IMK;
         }
-        
     }
 }

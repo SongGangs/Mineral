@@ -105,7 +105,6 @@ namespace Mineral.Helper
                         if (dataRow.Length > 0)
                         {
                             failed++;
-
                         }
                         else
                         {
@@ -119,7 +118,6 @@ namespace Mineral.Helper
                             AccessDB.Add(homogeneousMineral);
                             successed++;
                         }
-
                     }
                 }
                 return ("数据导入到" + dt.TableName + "表成功！成功导入" + successed + "条，有" + failed + "条在数据库中已存在");

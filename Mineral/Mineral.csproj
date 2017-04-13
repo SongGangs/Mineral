@@ -138,6 +138,7 @@
     <Resource Include="Images\update.png" />
     <Resource Include="Images\add.png" />
     <Resource Include="Images\import.png" />
+    <Resource Include="Images\logo.jpg" />
     <Content Include="Media\符山石.avi" />
     <Resource Include="Images\choseFile.png" />
     <Resource Include="Images\home.png" />
