@@ -133,6 +133,7 @@
     <Resource Include="Images\pause.png" />
     <Resource Include="Images\play.png" />
     <Resource Include="Images\stop.png" />
+    <Resource Include="Images\forword.png" />
     <Content Include="Media\符山石.avi" />
     <Resource Include="Images\choseFile.png" />
     <Resource Include="Images\home.png" />
@@ -143,7 +144,6 @@
     <Resource Include="Images\back.png" />
     <Resource Include="Images\delect.png" />
     <Resource Include="Images\down.png" />
-    <Resource Include="Images\forword.png" />
     <Resource Include="Images\inquery.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
