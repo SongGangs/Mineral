@@ -124,6 +124,7 @@
                         </ComboBox>
                         <ComboBox Name="ComboBox_DAR_no" Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="DRr" >
                             <ComboBoxItem Content="反射视旋转色散："/>
+                            <ComboBoxItem Content="不显"/>
                             <ComboBoxItem Content="DRr=r>v"/>
                             <ComboBoxItem Content="DRr=v>r"/>
                             <ComboBoxItem Content="DRr=0"/>
@@ -140,6 +141,7 @@
                         </ComboBox>
                         <ComboBox Name="ComboBox_InternalReflection_no" Style="{StaticResource ComboBoxStyle }" Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="InternalReflection" >
                             <ComboBoxItem Content="内反射："/>
+                            <ComboBoxItem Content="无"/>
                             <ComboBoxItem Content="红"/>
                             <ComboBoxItem Content="黄"/>
                             <ComboBoxItem Content="蓝"/>
@@ -177,10 +179,6 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <!--<ComboBox Style="{StaticResource ComboBoxStyle }"  Margin="585,-30,0,0"/>-->
-                <!--<ComboBox Style="{StaticResource ComboBoxStyle }"   Margin="30,15,0,0"/>-->
-                <!--<ComboBox Style="{StaticResource ComboBoxStyle }"   Margin="215,-30,0,0"/>-->
-                <!--<ComboBox Style="{StaticResource ComboBoxStyle }"    Margin="400,-30,0,0"/>-->
                 <Border BorderBrush="#FF18D2F7" BorderThickness="0,1,0,0" >
                     <StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle}">
@@ -274,12 +272,14 @@
 
                         <ComboBox Name="ComboBox_DAR" Style="{StaticResource ComboBoxStyle }"  Margin="400,-30,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="DRr">
                             <ComboBoxItem Content="反射视旋转色散DRr："/>
+                            <ComboBoxItem Content="不显"/>
                             <ComboBoxItem Content="DAr=r>v"/>
                             <ComboBoxItem Content="DAr=v>r"/>
                             <ComboBoxItem Content="DAr=0"/>
                         </ComboBox>
                         <ComboBox Name="ComboBox_InternalReflection" Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_homo_DropDownClosed" Tag="InternalReflection">
                             <ComboBoxItem Content="内反射："/>
+                            <ComboBoxItem Content="无"/>
                             <ComboBoxItem Content="红"/>
                             <ComboBoxItem Content="黄"/>
                             <ComboBoxItem Content="蓝"/>
@@ -309,14 +309,6 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <!--<ComboBox Style="{StaticResource ComboBoxStyle }"  Margin="30,20,0,0"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle }"  Margin="30,20,0,0"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0"/>
-                <ComboBox Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0"/>-->
                 <Border BorderBrush="#FF18D2F7" Margin="0,50,0,0" BorderThickness="0,1,0,0">
                     <StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle2}">
