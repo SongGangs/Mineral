@@ -22,9 +22,9 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="757*" />
+            <ColumnDefinition Width="800*" />
             <ColumnDefinition Width="110*" />
-            <ColumnDefinition Width="166*" />
+            <ColumnDefinition Width="145*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="27*" />
