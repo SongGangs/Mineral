@@ -985,59 +985,32 @@ namespace Mineral
             e.Row.Header = e.Row.GetIndex() + 1;
         }
         /// <summary>
-        /// 拷贝均质模板
+        /// 拷贝模板
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void JunCopyTemplate_Click(object sender, RoutedEventArgs e)
+        private void CopyTemplate_Click(object sender, RoutedEventArgs e)
         {
-            string sourceStr = System.AppDomain.CurrentDomain.BaseDirectory+@"Data\Template\均质.xlsx";
-            if (File.Exists(sourceStr))
+            string templateType = ((MenuItem)sender).Tag as string;
+            string sourcePath = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Template\" + templateType;
+            if (File.Exists(sourcePath))
             {
-                string targetStr = @"C:\Users\Administrator\Desktop\均质.xlsx";
-                FileInfo sourcefile = new FileInfo(sourceStr);
-                if (!File.Exists(targetStr))
+                string tatgetPath = @"C:\Users\Administrator\Desktop\" + templateType;
+                FileInfo sourcefile = new FileInfo(sourcePath);
+                if (!File.Exists(tatgetPath))
                 {
-                    sourcefile.CopyTo(targetStr);
-                    MessageBox.Show("导出‘均质’模板成功，在桌面上已经存在！");
+                    sourcefile.CopyTo(tatgetPath);
+                    MessageBox.Show("导出‘ "+templateType+" ’模板成功，在桌面上已经存在！");
                 }
                 else
                 {
-                    MessageBox.Show("‘均质.xlsx’在桌面上已经存在！");
+                    MessageBox.Show("‘ "+templateType+" ’在桌面上已经存在！");
                 }
             }
             else
             {
-                MessageBox.Show("不存在‘均质’模板");
+                MessageBox.Show("不存在' "+templateType+" '模板");
             }
         }
-        /// <summary>
-        /// 拷贝非均质模板
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FeiCopyTemplate_Click(object sender, RoutedEventArgs e)
-        {
-            string sourceStr = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Template\非均质.xlsx";
-            if (File.Exists(sourceStr))
-            {
-                string targetStr = @"C:\Users\Administrator\Desktop\非均质.xlsx";
-                FileInfo sourcefile = new FileInfo(sourceStr);
-                if (File.Exists(targetStr))
-                {
-                    sourcefile.CopyTo(targetStr);
-                    MessageBox.Show("导出‘非均质’模板成功，在桌面上已经存在！");
-                }
-                else
-                {
-                    MessageBox.Show("‘非均质.xlsx’在桌面上已经存在！");
-                }
-            }
-            else
-            {
-                MessageBox.Show("不存在‘非均质’模板");
-            }
-        }
-
     }
 }
