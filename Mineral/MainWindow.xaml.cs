@@ -43,7 +43,7 @@ namespace Mineral
 
         private bool IsAdd = false;
         private int modifyNum = 0;
-
+        public static string MediaUrl = null;//视频播放路径
         public MainWindow()
         {
             InitializeComponent();
@@ -65,7 +65,7 @@ namespace Mineral
         {
             UpdateCollections();
             InitDataGridByCollection(OrginHomoMinerals);
-            FillTextProperty();
+            //FillTextProperty();
             ShowHomoMineralInfoView();
         }
 
@@ -73,7 +73,7 @@ namespace Mineral
         {
             UpdateCollections();
             InitDataGridByCollection(OrginHeteMinerals);
-            FillTextProperty();
+            //FillTextProperty();
             ShowHeteMineralInfoView();
         }
 
@@ -527,8 +527,7 @@ namespace Mineral
                                     if (string.IsNullOrEmpty(map["Hardness"].ToString()))
                                         break;
                                     string str = map[item.Key.Replace("2", null)].ToString();
-                                    str = str.Substring(str.IndexOf("维氏硬度为") + 5,
-                                        str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
+                                    str = str.Substring(str.IndexOf("维氏硬度为") + 5,str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
                                     if (!CompareVaule(item.Value, str, 0.02))
                                         break;
                                 }
@@ -631,12 +630,12 @@ namespace Mineral
                     paramsNum = 0;
                 }
                 this.DataGrid.ItemsSource = list;
-                FillTextProperty();
+                //FillTextProperty();
             }
             else
             {
                 this.DataGrid.ItemsSource = myMinerals;
-                FillTextProperty();
+                //FillTextProperty();
             }
         }
 
@@ -924,15 +923,16 @@ namespace Mineral
         private void Btn_ReSet_Click(object sender, RoutedEventArgs e)
         {
             ClealComboBoxProperty();
+            ClealTextProperty();
             if (Viewflag==1)
             {
                 InitDataGridByCollection(OrginHomoMinerals);
-                FillTextProperty();
+                //FillTextProperty();
             }
             else if (Viewflag == 2)
             {
                 InitDataGridByCollection(OrginHeteMinerals);
-                FillTextProperty();
+                //FillTextProperty();
             }
         }
        /// <summary>
@@ -948,6 +948,31 @@ namespace Mineral
 
         private void Btn_Media_Click(object sender, RoutedEventArgs e)
         {
+            string FileName=null;
+            if (Viewflag == 1) //表示是均质矿物
+            {
+                FileName=this.Txt_ChineseName.Text.Trim().ToString();
+            }
+            else if (Viewflag == 2) //表示是非均质矿物
+            {
+                FileName=this.Txt_ChineseName_No.Text.Trim().ToString();
+            }
+            string mediaFile = System.AppDomain.CurrentDomain.BaseDirectory + @"Media";
+            if (Directory.Exists(mediaFile))
+            {
+                DirectoryInfo theFold = new DirectoryInfo(mediaFile);
+                FileInfo[] fileInfo = theFold.GetFiles();
+                //遍历文件
+                foreach (FileInfo NextFile in fileInfo)
+                {
+                    MediaUrl = null;
+                    if (FileName==NextFile.Name.Remove(NextFile.Name.LastIndexOf(".")))
+                    {
+                        MediaUrl = mediaFile + @"\" + NextFile.Name;
+                        break;
+                    }
+                }
+            }
             MediaWindow mediawindow = new MediaWindow();
             mediawindow.Show();
         }

@@ -17,7 +17,7 @@
             <Button Name="Btn_ChoseFile" Template="{StaticResource ChoseFileBtnTemplate}" HorizontalAlignment="Left" ToolTip="选择播放文件" Click="Btn_ChoseFile_Click"></Button>
         </StackPanel>
         <Border Grid.Row="1" BorderBrush="#FF75F6F8" BorderThickness="1.5" Margin="0">
-            <MediaElement Name="mediaElement" Margin="0" LoadedBehavior="Manual" MediaOpened="mediaElement_MediaOpened" Stretch="Fill"/>
+            <MediaElement Name="mediaElement" Margin="0" LoadedBehavior="Manual" MediaOpened="mediaElement_MediaOpened" Stretch="Fill" Loaded="mediaElement_Loaded"/>
         </Border>
         <StackPanel Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

@@ -43,7 +43,7 @@
             <RowDefinition Height="600*" />
             <RowDefinition Height="35*" />
         </Grid.RowDefinitions>
-
+        
         <StackPanel Grid.Column="0" Orientation="Horizontal" Background="#FF75F6F8">
             <Button Name="Btn_Forword" Template="{StaticResource HomeBtnTemplate}" Click="Btn_Forword_Click" ToolTip="首页"></Button>
             <Button Name="Btn_ReSet" Template="{StaticResource ReSetBtnTemplate}" ToolTip="重置" Click="Btn_ReSet_Click"></Button>
@@ -73,6 +73,7 @@
                 <DataGridTextColumn Header="矿物名称" Width="120" Binding="{Binding ChineseName}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <!--主界面-->
         <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
             <StackPanel>
                 <Image Source="Images\logo.jpg" Margin="0,50,0,0" Height="200"/>
@@ -91,8 +92,9 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Border Name="Border_Hete" Visibility="Hidden" Grid.Row="1" BorderThickness="0,2,3,0"
-                BorderBrush="#FF1A9EE5">
+        <!--非均质界面-->
+        <Border Name="Border_Hete" Grid.Row="1" BorderThickness="0,2,3,0"
+                BorderBrush="#FF1A9EE5" Visibility="Hidden">
             <StackPanel>
                 <GroupBox Header="非均质矿物检索条目">
                     <StackPanel >
@@ -255,6 +257,7 @@
                 </Border>
             </StackPanel>
         </Border>
+        <!--均质界面-->
         <Border Name="Border_Homo" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
             <StackPanel>
                 <GroupBox Header="均质矿物检索条目">

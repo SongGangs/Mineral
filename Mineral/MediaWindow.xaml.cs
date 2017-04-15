@@ -84,5 +84,22 @@ namespace Mineral
             }
             return (hour + ":" + minute + ":" + second);
         }
+
+        private void mediaElement_Loaded(object sender, RoutedEventArgs e)
+        {
+            //如何解决后缀名？
+            try
+            {
+                if (!String.IsNullOrEmpty(MainWindow.MediaUrl))
+                {
+                    this.mediaElement.Source = new Uri(MainWindow.MediaUrl);
+                    mediaElement.Play(); 
+                }
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+        }
     }
 }
