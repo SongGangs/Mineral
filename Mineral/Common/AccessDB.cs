@@ -29,9 +29,10 @@ namespace Mineral.Common
                         homogeneousMineral.ChineseName, homogeneousMineral.EnglishName,
                         homogeneousMineral.ChemicalFormula, homogeneousMineral.Syngony,
                         homogeneousMineral.NonUniformity, homogeneousMineral.Reflectivity,
-                        homogeneousMineral.Hardness, homogeneousMineral.ReflectionColor, homogeneousMineral.Rr,
-                        homogeneousMineral.DRr, homogeneousMineral.InternalReflection,
-                        homogeneousMineral.Origin, homogeneousMineral.IMK);
+                        homogeneousMineral.Hardness, homogeneousMineral.ReflectionColor, 
+                        homogeneousMineral.Rr,homogeneousMineral.DRr, 
+                        homogeneousMineral.InternalReflection,homogeneousMineral.Origin, 
+                        homogeneousMineral.IMK);
                 SqlHelper.ExecuteNonQuery(sql);
             }
             else if (mineral.mineralType == 2)//非均质
