@@ -74,7 +74,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <!--主界面-->
-        <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
+        <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
             <StackPanel>
                 <Image Source="Images\logo.jpg" Margin="0,50,0,0" Height="200"/>
                 <TextBox Name="Txt_QueryByName" Template="{StaticResource QueryTxtTemplate}" Height="45" Width="300"
@@ -94,10 +94,12 @@
         </Border>
         <!--非均质界面-->
         <Border Name="Border_Hete" Grid.Row="1" BorderThickness="0,2,3,0"
-                BorderBrush="#FF1A9EE5" Visibility="Hidden">
-            <StackPanel>
-                <GroupBox Header="非均质矿物检索条目">
-                    <StackPanel >
+                BorderBrush="#FF1A9EE5">
+            
+                    <StackPanel>
+                
+                        <GroupBox Header="非均质矿物检索条目">
+                    <StackPanel Width="783" >
                         <ComboBox Name="ComboBox_Heterogeneity_no" Style="{StaticResource ComboBoxStyle }"  Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="NonUniformity" >
                             <ComboBoxItem Content="非均性："/>
                             <ComboBoxItem Content="强"/>
@@ -190,7 +192,9 @@
                     </StackPanel>
                 </GroupBox>
                 <Border BorderBrush="#FF18D2F7" BorderThickness="0,1,0,0" >
-                    <StackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer.Content>
+                            <StackPanel ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <StackPanel Style="{StaticResource MarginStackPanelStyle}">
                             <Label Content="矿物名称" Style="{StaticResource IntLabelStyle}" />
                             <TextBox Name="Txt_ChineseName_No" Style="{StaticResource IntShortTextStyle}" />
@@ -254,8 +258,13 @@
                             <TextBox Name="Txt_IMK_No" Style="{StaticResource IntLongTextStyle}" />
                         </StackPanel>
                     </StackPanel>
+                        </ScrollViewer.Content>
+                    </ScrollViewer>
+
                 </Border>
+                        
             </StackPanel>
+           
         </Border>
         <!--均质界面-->
         <Border Name="Border_Homo" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">

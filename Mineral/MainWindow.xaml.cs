@@ -500,6 +500,30 @@ namespace Mineral
             }
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputValue"></param>
+        /// <param name="orginValue"></param>
+        /// <param name="roat">上下浮动数</param>
+        /// <returns></returns>
+        private bool CompareVauleAnd(string inputValue, string orginValue, double roat)
+        {
+            try
+            {
+                double maxValue = float.Parse(inputValue) + roat;
+                double minValue = (float.Parse(inputValue) - roat) <= 0 ? 0 : float.Parse(inputValue) - roat;
+                double value = double.Parse(orginValue);
+                if (minValue > value || maxValue < value)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
         /// 通过参数查询
         /// </summary>
         /// <param name="param"></param>
@@ -533,7 +557,7 @@ namespace Mineral
                                 }
                                 else if (item.Key == "Rr" && !string.IsNullOrEmpty(item.Value))
                                 {
-                                    if (!CompareVaule(item.Value, map[item.Key].ToString().Replace("°",null), 0.05))
+                                    if (!CompareVauleAnd(item.Value, map[item.Key].ToString().Replace("°",null), 5))
                                         break;
                                 }
                                 else if (!map[item.Key.Replace("2", null)].ToString().Contains(item.Value) && !string.IsNullOrEmpty(item.Value))
@@ -585,7 +609,7 @@ namespace Mineral
                                     }
                                     else if (item.Key == "Ar" )
                                     {
-                                        if (!CompareVaule(item.Value, map[item.Key].ToString().Replace("°", null), 0.05))
+                                        if (!CompareVauleAnd(item.Value, map[item.Key].ToString().Replace("°", null), 5))
                                             break;
                                     }
                                     else if (item.Key == "Reflectivity1")
