@@ -972,30 +972,33 @@ namespace Mineral
 
         private void Btn_Media_Click(object sender, RoutedEventArgs e)
         {
-            string FileName=null;
+            string FileName=String.Empty;
             if (Viewflag == 1) //表示是均质矿物
             {
-                FileName=this.Txt_ChineseName.Text.Trim().ToString();
+                FileName = this.Txt_ChineseName.Text.Trim().ToString();
             }
             else if (Viewflag == 2) //表示是非均质矿物
             {
-                FileName=this.Txt_ChineseName_No.Text.Trim().ToString();
+                FileName = this.Txt_ChineseName_No.Text.Trim().ToString();
             }
-            string mediaFile = System.AppDomain.CurrentDomain.BaseDirectory + @"Media";
-            if (Directory.Exists(mediaFile))
-            {
-                DirectoryInfo theFold = new DirectoryInfo(mediaFile);
-                FileInfo[] fileInfo = theFold.GetFiles();
-                //遍历文件
-                foreach (FileInfo NextFile in fileInfo)
+            if (!String.IsNullOrEmpty(FileName))
                 {
-                    MediaUrl = null;
-                    if (FileName==NextFile.Name.Remove(NextFile.Name.LastIndexOf(".")))
+                string mediaFile = System.AppDomain.CurrentDomain.BaseDirectory + @"Media";
+                if (Directory.Exists(mediaFile))
+                {
+                    DirectoryInfo theFold = new DirectoryInfo(mediaFile);
+                    FileInfo[] fileInfo = theFold.GetFiles();
+                    //遍历文件
+                    foreach (FileInfo NextFile in fileInfo)
                     {
-                        MediaUrl = mediaFile + @"\" + NextFile.Name;
-                        break;
+                        MediaUrl = null;
+                        if (FileName == NextFile.Name.Remove(NextFile.Name.LastIndexOf(".")))
+                        {
+                            MediaUrl = mediaFile + @"\" + NextFile.Name;
+                            break;
+                        }
                     }
-                }
+                } 
             }
             MediaWindow mediawindow = new MediaWindow();
             mediawindow.Show();
