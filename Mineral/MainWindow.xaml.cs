@@ -962,7 +962,7 @@ namespace Mineral
 
         private void Btn_Media_Click(object sender, RoutedEventArgs e)
         {
-            string FileName=null;
+            string FileName=String.Empty;
             if (Viewflag == 1) //表示是均质矿物
             {
                 FileName=this.Txt_ChineseName.Text.Trim().ToString();
