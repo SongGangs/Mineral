@@ -78,7 +78,7 @@
             <StackPanel>
                 <Image Source="Images\logo.jpg" Margin="0,50,0,0" Height="200"/>
                 <TextBox Name="Txt_QueryByName" Template="{StaticResource QueryTxtTemplate}" Height="45" Width="300"
-                         Margin="0,100,400,0" ToolTip="请输入中文、英文、化学式进行查询"/>
+                         Margin="0,100,400,0" ToolTip="请输入中文、英文、化学式进行查询" KeyDown="Txt_QueryByName_KeyDown"/>
                 <Button Name="showItemBtn" Template="{StaticResource SelectItemBtnTemplate}" Width="300" Height="45"
                         Margin="400,-45,10,0" Click="showItemBtn_Click" />
                 <StackPanel Name="StackPanel_Item" Width="300" Height="45" Margin="400,15,10,0"

@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using Mineral.Common;
 using Mineral.Helper;
 using System.IO;
+using System.Windows.Input;
 
 namespace Mineral
 {
@@ -998,6 +999,11 @@ namespace Mineral
 
         private void FindByNameButton_Click(object sender, RoutedEventArgs e)
         {
+            FindMineralByName();
+        }
+
+private void FindMineralByName()
+{
             Dictionary<string, string> paramters = new Dictionary<string, string>();
             string name = ControlHelper.FindVisualChildItem<TextBox>(this.Txt_QueryByName, "Txt_QueryByName").Text.Trim();
             if (!String.IsNullOrEmpty(name))
@@ -1020,7 +1026,7 @@ namespace Mineral
             {
                 InitDataGridByCollection(OrginMinerals);
             }
-        }
+}
 
         private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
@@ -1052,6 +1058,17 @@ namespace Mineral
             else
             {
                 MessageBox.Show("不存在' "+templateType+" '模板");
+            }
+        }
+        /// <summary>
+        /// 搜索框添加enter事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Txt_QueryByName_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key==Key.Enter){
+                FindMineralByName();
             }
         }
     }
