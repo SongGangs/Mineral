@@ -34,9 +34,9 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="800*" />
-            <ColumnDefinition Width="110*" />
-            <ColumnDefinition Width="145*" />
+            <ColumnDefinition Width="650*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="205*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="27*" />
@@ -70,11 +70,11 @@
         <StackPanel Grid.Column="1" Margin="0.2,0.8,157.2,0.2" Grid.Row="1" />
         <DataGrid Name="DataGrid" Grid.Row="1" Grid.Column="2" Margin="0.4,0.8,0.2,0.2" IsReadOnly="True" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" SelectedCellsChanged="DataGrid_SelectedCellsChanged" LoadingRow="DataGrid_LoadingRow">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="矿物名称" Width="120" Binding="{Binding ChineseName}"/>
+                <DataGridTextColumn Header="矿物名称" Width="225" Binding="{Binding ChineseName}"/>
             </DataGrid.Columns>
         </DataGrid>
         <!--主界面-->
-        <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
+        <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
             <StackPanel>
                 <Image Source="Images\logo.jpg" Margin="0,50,0,0" Height="200"/>
                 <TextBox Name="Txt_QueryByName" Template="{StaticResource QueryTxtTemplate}" Height="45" Width="300"
@@ -94,7 +94,7 @@
         </Border>
         <!--非均质界面-->
         <Border Name="Border_Hete" Grid.Row="1" BorderThickness="0,2,3,0"
-                BorderBrush="#FF1A9EE5">
+                BorderBrush="#FF1A9EE5" Visibility="Hidden">
             
                     <StackPanel>
                 
