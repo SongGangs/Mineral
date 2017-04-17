@@ -18,6 +18,7 @@ namespace Mineral
         private void Btn_ChoseFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog mediaFileDialog = new OpenFileDialog();
+            mediaFileDialog.Filter = @"视频文件(*.avi格式*)|*.avi|视频文件(*.wav格式*)|*.wav|视频文件(*.wmv格式*)|*.wmv|All File|*.*";
             mediaFileDialog.ShowDialog();
             if (!String.IsNullOrEmpty(mediaFileDialog.FileName))
             {
