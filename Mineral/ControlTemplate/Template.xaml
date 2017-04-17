@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
     
     <ControlTemplate x:Key="SelectItemBtnTemplate" TargetType="{x:Type Button}">
         <Border BorderBrush="#FF75F6F8" BorderThickness="1.5" CornerRadius="15">
@@ -21,7 +20,7 @@
     <ControlTemplate x:Key="DelectMineralBtnTemplate" TargetType="{x:Type Button}">
         <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
         <StackPanel Orientation="Horizontal">
-            <Image Source="../Images/delect.png" ></Image>
+            <Image Source="../Images/delete.png" ></Image>
             <Label Content="删除" Width="35"  ></Label>
         </StackPanel>
         </Border>
@@ -29,7 +28,7 @@
     <ControlTemplate x:Key="UpdateMineralBtnTemplate" TargetType="{x:Type Button}">
         <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
             <StackPanel Orientation="Horizontal">
-                <Image Source="../Images/inquery.png" ></Image>
+                <Image Source="../Images/update.png" ></Image>
                 <Label Content="更新" Width="35"  ></Label>
             </StackPanel>
         </Border>
@@ -37,7 +36,7 @@
     <ControlTemplate x:Key="ExportMineralBtnTemplate" TargetType="{x:Type Button}">
         <Border BorderBrush="#FF7AEFEE" BorderThickness="0,0,1,0">
             <StackPanel Orientation="Horizontal">
-                <Image Source="../Images/export.png" ></Image>
+                <Image Source="../Images/import.png" ></Image>
                 <Label Content="导入" Width="35"  ></Label>
             </StackPanel>
         </Border>
@@ -61,7 +60,17 @@
             <Label Content="非均质矿物" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#FFB03434"></Label>
         </Border>
     </ControlTemplate>
+    <!--播放器中控件样式-->
     <ControlTemplate x:Key="ChoseFileBtnTemplate" TargetType="{x:Type Button}">
         <Image Source="../Images/choseFile.png" Width="30"></Image>
+    </ControlTemplate>
+    <ControlTemplate x:Key="StopBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/stop.png" Width="20"></Image>
+    </ControlTemplate>
+    <ControlTemplate x:Key="PlayBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/play.png" Width="20"></Image>
+    </ControlTemplate>
+    <ControlTemplate x:Key="PauseBtnTemplate" TargetType="{x:Type Button}">
+        <Image Source="../Images/pause.png" Width="20"></Image>
     </ControlTemplate>
 </ResourceDictionary>

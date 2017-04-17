@@ -34,9 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -67,6 +69,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\AccessDB.cs" />
+    <Compile Include="Common\ProgressConverter.cs" />
+    <Compile Include="Common\TimeConverter.cs" />
     <Compile Include="Helper\ControlHelper.cs" />
     <Compile Include="Helper\MapHelper.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />
@@ -128,17 +132,22 @@
     <Content Include="DB\Mineral.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\pause.png" />
+    <Resource Include="Images\play.png" />
+    <Resource Include="Images\stop.png" />
+    <Resource Include="Images\forword.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\update.png" />
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\import.png" />
+    <Resource Include="Images\logo.jpg" />
     <Content Include="Media\符山石.avi" />
     <Resource Include="Images\choseFile.png" />
     <Resource Include="Images\home.png" />
     <Resource Include="Images\reset.png" />
     <Resource Include="Images\media.png" />
-    <Resource Include="Images\export.png" />
-    <Resource Include="Images\add.png" />
     <Resource Include="Images\back.png" />
-    <Resource Include="Images\delect.png" />
     <Resource Include="Images\down.png" />
-    <Resource Include="Images\forword.png" />
     <Resource Include="Images\inquery.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

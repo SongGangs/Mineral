@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using Mineral.Common;
 using Mineral.Helper;
+using System.IO;
 
 namespace Mineral
 {
@@ -42,8 +43,7 @@ namespace Mineral
 
         private bool IsAdd = false;
         private int modifyNum = 0;
-        private string delete_modifyString; //要删、改的项
-
+        public static string MediaUrl = null;//视频播放路径
         public MainWindow()
         {
             InitializeComponent();
@@ -65,7 +65,7 @@ namespace Mineral
         {
             UpdateCollections();
             InitDataGridByCollection(OrginHomoMinerals);
-            FillTextProperty();
+            //FillTextProperty();
             ShowHomoMineralInfoView();
         }
 
@@ -73,7 +73,7 @@ namespace Mineral
         {
             UpdateCollections();
             InitDataGridByCollection(OrginHeteMinerals);
-            FillTextProperty();
+            //FillTextProperty();
             ShowHeteMineralInfoView();
         }
 
@@ -500,6 +500,30 @@ namespace Mineral
             }
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputValue"></param>
+        /// <param name="orginValue"></param>
+        /// <param name="roat">上下浮动数</param>
+        /// <returns></returns>
+        private bool CompareVauleAnd(string inputValue, string orginValue, double roat)
+        {
+            try
+            {
+                double maxValue = float.Parse(inputValue) + roat;
+                double minValue = (float.Parse(inputValue) - roat) <= 0 ? 0 : float.Parse(inputValue) - roat;
+                double value = double.Parse(orginValue);
+                if (minValue > value || maxValue < value)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
         /// 通过参数查询
         /// </summary>
         /// <param name="param"></param>
@@ -527,14 +551,13 @@ namespace Mineral
                                     if (string.IsNullOrEmpty(map["Hardness"].ToString()))
                                         break;
                                     string str = map[item.Key.Replace("2", null)].ToString();
-                                    str = str.Substring(str.IndexOf("维氏硬度为") + 5,
-                                        str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
+                                    str = str.Substring(str.IndexOf("维氏硬度为") + 5,str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
                                     if (!CompareVaule(item.Value, str, 0.02))
                                         break;
                                 }
                                 else if (item.Key == "Rr" && !string.IsNullOrEmpty(item.Value))
                                 {
-                                    if (!CompareVaule(item.Value, map[item.Key].ToString().Replace("°",null), 0.05))
+                                    if (!CompareVauleAnd(item.Value, map[item.Key].ToString().Replace("°",null), 5))
                                         break;
                                 }
                                 else if (!map[item.Key.Replace("2", null)].ToString().Contains(item.Value) && !string.IsNullOrEmpty(item.Value))
@@ -586,7 +609,7 @@ namespace Mineral
                                     }
                                     else if (item.Key == "Ar" )
                                     {
-                                        if (!CompareVaule(item.Value, map[item.Key].ToString().Replace("°", null), 0.05))
+                                        if (!CompareVauleAnd(item.Value, map[item.Key].ToString().Replace("°", null), 5))
                                             break;
                                     }
                                     else if (item.Key == "Reflectivity1")
@@ -631,12 +654,12 @@ namespace Mineral
                     paramsNum = 0;
                 }
                 this.DataGrid.ItemsSource = list;
-                FillTextProperty();
+                //FillTextProperty();
             }
             else
             {
                 this.DataGrid.ItemsSource = myMinerals;
-                FillTextProperty();
+                //FillTextProperty();
             }
         }
 
@@ -924,15 +947,16 @@ namespace Mineral
         private void Btn_ReSet_Click(object sender, RoutedEventArgs e)
         {
             ClealComboBoxProperty();
+            ClealTextProperty();
             if (Viewflag==1)
             {
                 InitDataGridByCollection(OrginHomoMinerals);
-                FillTextProperty();
+                //FillTextProperty();
             }
             else if (Viewflag == 2)
             {
                 InitDataGridByCollection(OrginHeteMinerals);
-                FillTextProperty();
+                //FillTextProperty();
             }
         }
        /// <summary>
@@ -948,6 +972,31 @@ namespace Mineral
 
         private void Btn_Media_Click(object sender, RoutedEventArgs e)
         {
+            string FileName=null;
+            if (Viewflag == 1) //表示是均质矿物
+            {
+                FileName=this.Txt_ChineseName.Text.Trim().ToString();
+            }
+            else if (Viewflag == 2) //表示是非均质矿物
+            {
+                FileName=this.Txt_ChineseName_No.Text.Trim().ToString();
+            }
+            string mediaFile = System.AppDomain.CurrentDomain.BaseDirectory + @"Media";
+            if (Directory.Exists(mediaFile))
+            {
+                DirectoryInfo theFold = new DirectoryInfo(mediaFile);
+                FileInfo[] fileInfo = theFold.GetFiles();
+                //遍历文件
+                foreach (FileInfo NextFile in fileInfo)
+                {
+                    MediaUrl = null;
+                    if (FileName==NextFile.Name.Remove(NextFile.Name.LastIndexOf(".")))
+                    {
+                        MediaUrl = mediaFile + @"\" + NextFile.Name;
+                        break;
+                    }
+                }
+            }
             MediaWindow mediawindow = new MediaWindow();
             mediawindow.Show();
         }
@@ -983,6 +1032,34 @@ namespace Mineral
         private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = e.Row.GetIndex() + 1;
+        }
+        /// <summary>
+        /// 拷贝模板
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CopyTemplate_Click(object sender, RoutedEventArgs e)
+        {
+            string templateType = ((MenuItem)sender).Tag as string;
+            string sourcePath = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Template\" + templateType;
+            if (File.Exists(sourcePath))
+            {
+                string tatgetPath = @"C:\Users\Administrator\Desktop\" + templateType;
+                FileInfo sourcefile = new FileInfo(sourcePath);
+                if (!File.Exists(tatgetPath))
+                {
+                    sourcefile.CopyTo(tatgetPath);
+                    MessageBox.Show("导出‘ "+templateType+" ’模板成功，在桌面上已经存在！");
+                }
+                else
+                {
+                    MessageBox.Show("‘ "+templateType+" ’在桌面上已经存在！");
+                }
+            }
+            else
+            {
+                MessageBox.Show("不存在' "+templateType+" '模板");
+            }
         }
     }
 }

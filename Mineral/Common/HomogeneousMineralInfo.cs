@@ -50,6 +50,24 @@ namespace Mineral.Common
         /// <param name="Origin">矿物成因产状形态特征及伴生矿物</param>
         /// <param name="IMK">主要鉴定特征</param>
         public HomogeneousMineralInfo(int ID,string ChineseName, string EnglishName, string ChemicalFormula,
+            string Syngony, string NonUniformity, string Reflectivity, string Hardness, string ReflectionColor,
+            string DRr, string InternalReflection, string Origin, string IMK)
+        {
+            this.ID = ID;
+            this.ChineseName = ChineseName;
+            this.EnglishName = EnglishName;
+            this.ChemicalFormula = ChemicalFormula;
+            this.Syngony = Syngony;
+            this.NonUniformity = NonUniformity;
+            this.Reflectivity = Reflectivity;
+            this.Hardness = Hardness;
+            this.ReflectionColor = ReflectionColor;
+            this.DRr = DRr;
+            this.InternalReflection = InternalReflection;
+            this.Origin = Origin;
+            this.IMK = IMK;
+        }
+        public HomogeneousMineralInfo(int ID, string ChineseName, string EnglishName, string ChemicalFormula,
             string Syngony, string NonUniformity, string Reflectivity, string Hardness, string ReflectionColor, float Rr,
             string DRr, string InternalReflection, string Origin, string IMK)
         {
@@ -68,6 +86,5 @@ namespace Mineral.Common
             this.Origin = Origin;
             this.IMK = IMK;
         }
-        
     }
 }
