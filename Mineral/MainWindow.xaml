@@ -85,10 +85,10 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="0.2,0.8,157.2,0.2" Grid.Row="1" />
         <DataGrid Name="DataGrid" Grid.Row="1" Grid.Column="2" Margin="0.4,0.8,0.2,0.2" IsReadOnly="True"
-                  AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False"
-                  SelectedCellsChanged="DataGrid_SelectedCellsChanged" LoadingRow="DataGrid_LoadingRow">
+                  AutoGenerateColumns="False"  CanUserResizeColumns="False" CanUserReorderColumns="False"
+                  SelectedCellsChanged="DataGrid_SelectedCellsChanged" LoadingRow="DataGrid_LoadingRow" HorizontalScrollBarVisibility="Disabled">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="矿物名称" Width="225" Binding="{Binding ChineseName}" />
+                <DataGridTextColumn Header="矿物名称" Width="233" Binding="{Binding ChineseName}" />
             </DataGrid.Columns>
         </DataGrid>
         <!--主界面-->
