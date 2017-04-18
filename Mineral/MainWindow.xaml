@@ -74,7 +74,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <!--主界面-->
-        <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
+        <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
             <StackPanel>
                 <Image Source="Images\logo.jpg" Margin="0,50,0,0" Height="200"/>
                 <TextBox Name="Txt_QueryByName" Template="{StaticResource QueryTxtTemplate}" Height="45" Width="300"
@@ -281,7 +281,7 @@
 
         </Border>
         <!--均质界面-->
-        <Border Name="Border_Homo" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
+        <Border Name="Border_Homo" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
             <StackPanel>
                 <GroupBox Header="均质矿物检索条目">
                     <StackPanel Margin="0,10,0,0">
