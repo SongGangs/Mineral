@@ -74,7 +74,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <!--主界面-->
-        <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
+        <Border Name="Border_Home" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
             <StackPanel>
                 <Image Source="Images\logo.jpg" Margin="0,50,0,0" Height="200"/>
                 <TextBox Name="Txt_QueryByName" Template="{StaticResource QueryTxtTemplate}" Height="45" Width="300"
@@ -264,8 +264,8 @@
                                     <TextBox Name="Txt_InternalReflection_No" Style="{StaticResource IntLongTextStyle}" />
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                                    <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" />
-                                    <TextBox Name="Txt_Origin_No" Style="{StaticResource IntLongAndHeightTextStyle}" />
+                                    <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" Width="190" />
+                                    <TextBox Name="Txt_Origin_No" Style="{StaticResource IntLongAndHeightTextStyle}" Width="540" />
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource MarginStackPanelStyle}">
                                     <Label Content="主要鉴定特征" Style="{StaticResource IntLabelStyle}" />
@@ -281,7 +281,7 @@
 
         </Border>
         <!--均质界面-->
-        <Border Name="Border_Homo" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
+        <Border Name="Border_Homo" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5">
             <StackPanel>
                 <GroupBox Header="均质矿物检索条目">
                     <StackPanel Margin="0,10,0,0">
@@ -341,7 +341,7 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <Border BorderBrush="#FF18D2F7" Margin="0,50,0,0" BorderThickness="0,1,0,0">
+                <Border BorderBrush="#FF18D2F7" Margin="0" BorderThickness="0,1,0,0">
                     <StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle2}">
                             <Label Content="矿物名称" Style="{StaticResource IntLabelStyle}" />
@@ -382,8 +382,8 @@
                             <TextBox Name="Txt_InternalReflection" Style="{StaticResource IntLongTextStyle}" />
                         </StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle2}">
-                            <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Origin" Style="{StaticResource IntLongAndHeightTextStyle}"  />
+                            <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" Width="189" />
+                            <TextBox Name="Txt_Origin" Style="{StaticResource IntLongAndHeightTextStyle}" Width="541"  />
                         </StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle2}">
                             <Label Content="主要鉴定特征" Style="{StaticResource IntLabelStyle}" />
