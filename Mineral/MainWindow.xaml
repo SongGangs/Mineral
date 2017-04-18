@@ -43,7 +43,7 @@
             <RowDefinition Height="600*" />
             <RowDefinition Height="35*" />
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Column="0" Orientation="Horizontal" Background="#FF75F6F8">
             <Button Name="Btn_Forword" Template="{StaticResource HomeBtnTemplate}" Click="Btn_Forword_Click" ToolTip="首页"></Button>
             <Button Name="Btn_ReSet" Template="{StaticResource ReSetBtnTemplate}" ToolTip="重置" Click="Btn_ReSet_Click"></Button>
@@ -95,99 +95,113 @@
         <!--非均质界面-->
         <Border Name="Border_Hete" Grid.Row="1" BorderThickness="0,2,3,0"
                 BorderBrush="#FF1A9EE5" Visibility="Hidden">
-            
-                    <StackPanel>
-                
-                        <GroupBox Header="非均质矿物检索条目">
-                    <StackPanel Width="783" >
-                        <ComboBox Name="ComboBox_Heterogeneity_no" Style="{StaticResource ComboBoxStyle }"  Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="NonUniformity" >
-                            <ComboBoxItem Content="非均性："/>
-                            <ComboBoxItem Content="强"/>
-                            <ComboBoxItem Content="弱"/>
+            <StackPanel>
+                <GroupBox Header="非均质矿物检索条目">
+                    <StackPanel Width="783">
+                        <ComboBox Name="ComboBox_Heterogeneity_no" Style="{StaticResource ComboBoxStyle }"
+                                  Margin="30,13,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="NonUniformity">
+                            <ComboBoxItem Content="非均性：" />
+                            <ComboBoxItem Content="强" />
+                            <ComboBoxItem Content="弱" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_ReflectivityClassify_no" Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Reflectivity" >
-                            <ComboBoxItem Content="反射率视测分级："/>
-                            <ComboBoxItem Content="Ⅰ"/>
-                            <ComboBoxItem Content="Ⅱ"/>
-                            <ComboBoxItem Content="Ⅲ"/>
-                            <ComboBoxItem Content="Ⅳ"/>
-                            <ComboBoxItem Content="Ⅴ"/>
+                        <ComboBox Name="ComboBox_ReflectivityClassify_no" Style="{StaticResource ComboBoxStyle }"
+                                  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Reflectivity">
+                            <ComboBoxItem Content="反射率视测分级：" />
+                            <ComboBoxItem Content="Ⅰ" />
+                            <ComboBoxItem Content="Ⅱ" />
+                            <ComboBoxItem Content="Ⅲ" />
+                            <ComboBoxItem Content="Ⅳ" />
+                            <ComboBoxItem Content="Ⅴ" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_ReflectionColor_no" Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="ReflectionColor" >
-                            <ComboBoxItem Content="反射色视测分级："/>
-                            <ComboBoxItem Content="无色类"/>
-                            <ComboBoxItem Content="黄色类"/>
-                            <ComboBoxItem Content="玫瑰色类"/>
-                            <ComboBoxItem Content="蓝色类"/>
+                        <ComboBox Name="ComboBox_ReflectionColor_no" Style="{StaticResource ComboBoxStyle }"
+                                  Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="ReflectionColor">
+                            <ComboBoxItem Content="反射色视测分级：" />
+                            <ComboBoxItem Content="无色类" />
+                            <ComboBoxItem Content="黄色类" />
+                            <ComboBoxItem Content="玫瑰色类" />
+                            <ComboBoxItem Content="蓝色类" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_Bireflection_no" Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Bireflection" >
-                            <ComboBoxItem Content="双反射及反射多色性："/>
-                            <ComboBoxItem Content="特强"/>
-                            <ComboBoxItem Content="显著"/>
-                            <ComboBoxItem Content="清楚"/>
-                            <ComboBoxItem Content="微弱"/>
-                            <ComboBoxItem Content="无"/>
+                        <ComboBox Name="ComboBox_Bireflection_no" Style="{StaticResource ComboBoxStyle }"
+                                  Margin="585,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Bireflection">
+                            <ComboBoxItem Content="双反射及反射多色性：" />
+                            <ComboBoxItem Content="特强" />
+                            <ComboBoxItem Content="显著" />
+                            <ComboBoxItem Content="清楚" />
+                            <ComboBoxItem Content="微弱" />
+                            <ComboBoxItem Content="无" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_DAr_no" Style="{StaticResource ComboBoxStyle }"  Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="DAr" >
-                            <ComboBoxItem Content="非均质视旋转色散DAr："/>
-                            <ComboBoxItem Content="DAr=r>v"/>
-                            <ComboBoxItem Content="DAr=v>r"/>
-                            <ComboBoxItem Content="DAr=0"/>
+                        <ComboBox Name="ComboBox_DAr_no" Style="{StaticResource ComboBoxStyle }" Margin="30,13,0,0"
+                                  DropDownClosed="ComboBox_DropDownClosed" Tag="DAr">
+                            <ComboBoxItem Content="非均质视旋转色散DAr：" />
+                            <ComboBoxItem Content="DAr=r>v" />
+                            <ComboBoxItem Content="DAr=v>r" />
+                            <ComboBoxItem Content="DAr=0" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_DAR_no" Style="{StaticResource ComboBoxStyle }"  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="DRr" >
-                            <ComboBoxItem Content="反射视旋转色散："/>
-                            <ComboBoxItem Content="不显"/>
-                            <ComboBoxItem Content="DRr=r>v"/>
-                            <ComboBoxItem Content="DRr=v>r"/>
-                            <ComboBoxItem Content="DRr=0"/>
+                        <ComboBox Name="ComboBox_DAR_no" Style="{StaticResource ComboBoxStyle }" Margin="215,-30,0,0"
+                                  DropDownClosed="ComboBox_DropDownClosed" Tag="DRr">
+                            <ComboBoxItem Content="反射视旋转色散：" />
+                            <ComboBoxItem Content="不显" />
+                            <ComboBoxItem Content="DRr=r>v" />
+                            <ComboBoxItem Content="DRr=v>r" />
+                            <ComboBoxItem Content="DRr=0" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_Rs_no"  Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Rs" >
-                            <ComboBoxItem Content="旋向Rs："/>
-                            <ComboBoxItem Content="+"/>
-                            <ComboBoxItem Content="-"/>
+                        <ComboBox Name="ComboBox_Rs_no" Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0"
+                                  DropDownClosed="ComboBox_DropDownClosed" Tag="Rs">
+                            <ComboBoxItem Content="旋向Rs：" />
+                            <ComboBoxItem Content="+" />
+                            <ComboBoxItem Content="-" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_Ps_no"  Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Ps" >
-                            <ComboBoxItem Content="相符Ps："/>
-                            <ComboBoxItem Content="+"/>
-                            <ComboBoxItem Content="-"/>
+                        <ComboBox Name="ComboBox_Ps_no" Style="{StaticResource ComboBoxStyle }" Margin="585,-30,0,0"
+                                  DropDownClosed="ComboBox_DropDownClosed" Tag="Ps">
+                            <ComboBoxItem Content="相符Ps：" />
+                            <ComboBoxItem Content="+" />
+                            <ComboBoxItem Content="-" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_InternalReflection_no" Style="{StaticResource ComboBoxStyle }" Margin="30,15,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="InternalReflection" >
-                            <ComboBoxItem Content="内反射："/>
-                            <ComboBoxItem Content="无"/>
-                            <ComboBoxItem Content="红"/>
-                            <ComboBoxItem Content="黄"/>
-                            <ComboBoxItem Content="蓝"/>
-                            <ComboBoxItem Content="绿"/>
-                            <ComboBoxItem Content="白"/>
+                        <ComboBox Name="ComboBox_InternalReflection_no" Style="{StaticResource ComboBoxStyle }"
+                                  Margin="30,13,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="InternalReflection">
+                            <ComboBoxItem Content="内反射：" />
+                            <ComboBoxItem Content="无" />
+                            <ComboBoxItem Content="红" />
+                            <ComboBoxItem Content="黄" />
+                            <ComboBoxItem Content="蓝" />
+                            <ComboBoxItem Content="绿" />
+                            <ComboBoxItem Content="白" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_MultipleDAR_no" Style="{StaticResource ComboBoxStyle }" Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="ReflectionDAR" >
-                            <ComboBoxItem Content="综合旋转色散DAR："/>
-                            <ComboBoxItem Content="DAR:蓝))红"/>
-                            <ComboBoxItem Content="DAR:红))蓝"/>
+                        <ComboBox Name="ComboBox_MultipleDAR_no" Style="{StaticResource ComboBoxStyle }"
+                                  Margin="215,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="ReflectionDAR">
+                            <ComboBoxItem Content="综合旋转色散DAR：" />
+                            <ComboBoxItem Content="DAR:蓝))红" />
+                            <ComboBoxItem Content="DAR:红))蓝" />
                         </ComboBox>
-                        <ComboBox Name="ComboBox_ScratchHardness_no" Style="{StaticResource ComboBoxStyle }" Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Hardness" >
-                            <ComboBoxItem Content="刻划硬度："/>
-                            <ComboBoxItem Content="高"/>
-                            <ComboBoxItem Content="中"/>
-                            <ComboBoxItem Content="低"/>
+                        <ComboBox Name="ComboBox_ScratchHardness_no" Style="{StaticResource ComboBoxStyle }"
+                                  Margin="400,-30,0,0" DropDownClosed="ComboBox_DropDownClosed" Tag="Hardness">
+                            <ComboBoxItem Content="刻划硬度：" />
+                            <ComboBoxItem Content="高" />
+                            <ComboBoxItem Content="中" />
+                            <ComboBoxItem Content="低" />
                         </ComboBox>
                         <StackPanel Orientation="Horizontal" Margin="585,-30,0,0">
                             <Label VerticalContentAlignment="Center">维氏硬度：</Label>
-                            <TextBox Name="Txt_VickersHardness_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Hardness2"></TextBox>
+                            <TextBox Name="Txt_VickersHardness_no" Width="80" TextChanged="Txt_TextChanged"
+                                     Tag="Hardness2">
+                            </TextBox>
                         </StackPanel>
-                        <StackPanel Width="332" Margin="30,15,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Label VerticalContentAlignment="Center">视觉反射率--长轴：</Label>
-                            <TextBox  Name="Txt_LongAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity1"></TextBox>
+                        <StackPanel  Margin="30,13,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Label VerticalContentAlignment="Center" Content="视觉反射率--长轴："/>
+                            <TextBox x:Name="Txt_LongAxis_no" Width="80" TextChanged="Txt_TextChanged"
+                        		Tag="Reflectivity1"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="280,-30,0,0">
-                            <Label  VerticalContentAlignment="Center" >视觉反射率--短轴：</Label>
-                            <TextBox Name="Txt_ShortAxis_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Reflectivity2"></TextBox>
+                            <Label VerticalContentAlignment="Center">视觉反射率--短轴：</Label>
+                            <TextBox Name="Txt_ShortAxis_no" Width="80" TextChanged="Txt_TextChanged"
+                                     Tag="Reflectivity2">
+                            </TextBox>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Margin="500,-30,0,0">
                             <Label VerticalContentAlignment="Center">非均质视旋转角Ar：</Label>
-                            <TextBox Name="Txt_Ar_no"  Width="80" TextChanged="Txt_TextChanged" Tag="Ar"></TextBox>
+                            <TextBox Name="Txt_Ar_no" Width="80" TextChanged="Txt_TextChanged" Tag="Ar"></TextBox>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
@@ -195,76 +209,76 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ScrollViewer.Content>
                             <StackPanel ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="矿物名称" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_ChineseName_No" Style="{StaticResource IntShortTextStyle}" />
-                            <Label Content="矿物英文名称" Style="{StaticResource IntLabelStyle}" Margin="40,0,0,0" />
-                            <TextBox Name="Txt_EnglishName_No" Style="{StaticResource IntShortTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="矿物化学式" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_ChemicalFormula_No" Style="{StaticResource IntShortTextStyle}" />
-                            <Label Content="矿物的晶系" Style="{StaticResource IntLabelStyle}" Margin="40,0,0,0" />
-                            <TextBox Name="Txt_Syngony_No" Style="{StaticResource IntShortTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="均非性" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_NonUniformity_No" Style="{StaticResource IntLongTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="反射率" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Reflectivity_No" Style="{StaticResource IntLongTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="硬度" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Hardness_No" Style="{StaticResource IntLongTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="反射色" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_ReflectionColor_No" Style="{StaticResource IntLongTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="双反射及反射多色性" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Bireflection_No" Style="{StaticResource IntLongTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="非均质视旋转角Ar" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Ar_No" Style="{StaticResource IntShortTextStyle}" />
-                            <Label Content="非均质视旋转色散DAr" Margin="40,0,0,0" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_DAr_No" Style="{StaticResource IntShortTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="旋向Rs" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Rs_No" Style="{StaticResource IntShortTextStyle}" />
-                            <Label Content="相符Ps" Margin="40,0,0,0" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Ps_No" Style="{StaticResource IntShortTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="反射视旋转色散DRr" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_DRr_No" Style="{StaticResource IntShortTextStyle}" />
-                            <Label Content="综合旋转色散DAR" Margin="40,0,0,0" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_ReflectionDAR_No" Style="{StaticResource IntShortTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="内反射" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_InternalReflection_No" Style="{StaticResource IntLongTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Origin_No" Style="{StaticResource IntLongTextStyle}" />
-                        </StackPanel>
-                        <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                            <Label Content="主要鉴定特征" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_IMK_No" Style="{StaticResource IntLongTextStyle}" />
-                        </StackPanel>
-                    </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="矿物名称" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_ChineseName_No" Style="{StaticResource IntShortTextStyle}" />
+                                    <Label Content="矿物英文名称" Style="{StaticResource IntLabelStyle}" Margin="40,0,0,0" />
+                                    <TextBox Name="Txt_EnglishName_No" Style="{StaticResource IntShortTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="矿物化学式" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_ChemicalFormula_No" Style="{StaticResource IntShortTextStyle}" />
+                                    <Label Content="矿物的晶系" Style="{StaticResource IntLabelStyle}" Margin="40,0,0,0" />
+                                    <TextBox Name="Txt_Syngony_No" Style="{StaticResource IntShortTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="均非性" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_NonUniformity_No" Style="{StaticResource IntLongTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="反射率" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_Reflectivity_No" Style="{StaticResource IntLongTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="硬度" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_Hardness_No" Style="{StaticResource IntLongTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="反射色" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_ReflectionColor_No" Style="{StaticResource IntLongTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="双反射及反射多色性" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_Bireflection_No" Style="{StaticResource IntLongTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="非均质视旋转角Ar" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_Ar_No" Style="{StaticResource IntShortTextStyle}" />
+                                    <Label Content="非均质视旋转色散DAr" Margin="40,0,0,0" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_DAr_No" Style="{StaticResource IntShortTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="旋向Rs" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_Rs_No" Style="{StaticResource IntShortTextStyle}" />
+                                    <Label Content="相符Ps" Margin="40,0,0,0" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_Ps_No" Style="{StaticResource IntShortTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="反射视旋转色散DRr" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_DRr_No" Style="{StaticResource IntShortTextStyle}" />
+                                    <Label Content="综合旋转色散DAR" Margin="40,0,0,0" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_ReflectionDAR_No" Style="{StaticResource IntShortTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="内反射" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_InternalReflection_No" Style="{StaticResource IntLongTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_Origin_No" Style="{StaticResource IntLongAndHeightTextStyle}" />
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource MarginStackPanelStyle}">
+                                    <Label Content="主要鉴定特征" Style="{StaticResource IntLabelStyle}" />
+                                    <TextBox Name="Txt_IMK_No" Style="{StaticResource IntLongTextStyle}" />
+                                </StackPanel>
+                            </StackPanel>
                         </ScrollViewer.Content>
                     </ScrollViewer>
 
                 </Border>
-                        
+
             </StackPanel>
-           
+
         </Border>
         <!--均质界面-->
         <Border Name="Border_Homo" Grid.Row="1" BorderThickness="0,2,3,0" BorderBrush="#FF1A9EE5" Visibility="Hidden">
@@ -369,7 +383,7 @@
                         </StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle2}">
                             <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" />
-                            <TextBox Name="Txt_Origin" Style="{StaticResource IntLongTextStyle}" />
+                            <TextBox Name="Txt_Origin" Style="{StaticResource IntLongAndHeightTextStyle}"  />
                         </StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle2}">
                             <Label Content="主要鉴定特征" Style="{StaticResource IntLabelStyle}" />

@@ -10,14 +10,24 @@
     </Style>
     <Style x:Key="IntShortTextStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Width" Value="212px"></Setter>
+        <Setter Property="Height" Value="25px"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="Margin" Value="5,0,0,0"></Setter>
         <Setter Property="Foreground" Value="LightSeaGreen"></Setter>
     </Style>
     <Style x:Key="IntLongTextStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Width" Value="600px"></Setter>
+        <Setter Property="Height" Value="25px"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="Margin" Value="5,0,0,0"></Setter>
+        <Setter Property="Foreground" Value="LightSeaGreen"></Setter>
+    </Style>
+    <Style x:Key="IntLongAndHeightTextStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Width" Value="600px"></Setter>
+        <Setter Property="Height" Value="35px"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="5,0,0,0"></Setter>
+        <Setter Property="TextWrapping" Value="Wrap"></Setter>
         <Setter Property="Foreground" Value="LightSeaGreen"></Setter>
     </Style>
     <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
