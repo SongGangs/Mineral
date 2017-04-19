@@ -71,6 +71,7 @@
     <Compile Include="Common\AccessDB.cs" />
     <Compile Include="Common\ProgressConverter.cs" />
     <Compile Include="Common\TimeConverter.cs" />
+    <Compile Include="Helper\AngleHelper.cs" />
     <Compile Include="Helper\ControlHelper.cs" />
     <Compile Include="Helper\MapHelper.cs" />
     <Compile Include="Helper\ExcelHelper.cs" />

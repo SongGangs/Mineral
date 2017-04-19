@@ -473,13 +473,16 @@ namespace Mineral
         /// <param name="orginValue"></param>
         /// <param name="roat">上下浮动数</param>
         /// <returns></returns>
-        private bool CompareVaule(string inputValue, string orginValue,double roat)
+        private bool CompareVaule(string inputValue, string orginValue)
         {
             try
             {
+                /*
                 double maxValue = float.Parse(inputValue) * (1 + roat);
-                double minValue = float.Parse(inputValue) * (1 - roat);
-                double value = double.Parse(orginValue);
+                double minValue = float.Parse(inputValue) * (1 - roat);*/
+                double minValue = float.Parse(orginValue.Split('~')[0]);
+                double maxValue = float.Parse(orginValue.Split('~')[1]);
+                double value = double.Parse(inputValue);
                 if (minValue > value || maxValue < value)
                     return false;
                 else
@@ -542,8 +545,12 @@ namespace Mineral
                                     if (string.IsNullOrEmpty(map["Hardness"].ToString()))
                                         break;
                                     string str = map[item.Key.Replace("2", null)].ToString();
-                                    str = str.Substring(str.IndexOf("维氏硬度为") + 5,str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
-                                    if (!CompareVaule(item.Value, str, 0.02))
+                                    if (str.Contains("，"))
+                                        str = str.Substring(str.IndexOf("维氏硬度为") + 5,
+                                            str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
+                                    else
+                                        str = str.Substring(str.IndexOf("维氏硬度为") + 5);
+                                    if (!CompareVaule(item.Value, str))
                                         break;
                                 }
                                 else if (item.Key == "Rr" && !string.IsNullOrEmpty(item.Value))
@@ -564,7 +571,6 @@ namespace Mineral
                             {
                                 if (!map[item.Key].ToString().Contains(item.Value))
                                 {
-
                                     if (item.Key != "EnglishName" )
                                         break;
                                 }
@@ -593,9 +599,12 @@ namespace Mineral
                                         if (string.IsNullOrEmpty(map["Hardness"].ToString()))
                                             break;
                                         string str = map[item.Key.Replace("2", null)].ToString();
-                                        str = str.Substring(str.IndexOf("维氏硬度为") + 5,
-                                            str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
-                                        if (!CompareVaule(item.Value, str, 0.02))
+                                        if (str.Contains("，"))
+                                            str = str.Substring(str.IndexOf("维氏硬度为") + 5,
+                                                str.IndexOf("，") - str.IndexOf("维氏硬度为") - 5);
+                                        else
+                                            str = str.Substring(str.IndexOf("维氏硬度为") + 5);
+                                        if (!CompareVaule(item.Value, str))
                                             break;
                                     }
                                     else if (item.Key == "Ar" )

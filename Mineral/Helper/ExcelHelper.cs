@@ -70,6 +70,99 @@ namespace Mineral.Helper
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
+                        DataRow[] dataRow =
+                            mineralDataSet.Tables[dt.TableName].Select("ChineseName='" + dt.Rows[i]["矿物中文名称"].ToString() +
+                                                                       "'");
+                        if (dataRow.Length > 0)
+                        {
+                            failed++;
+                        }
+                        else
+                        {
+                            HeterogeneousMineralInfo heterogeneousMineral = null;
+                            string Ar = dt.Rows[i]["非均质视旋转角Ar"].ToString();
+                            if (!String.IsNullOrEmpty(Ar))
+                            {
+                                if (Ar.Contains("="))
+                                    Ar = Ar.Split('=')[1];
+                                Ar = AngleHelper.ConvertAngleToString(Ar);
+                            }
+                            heterogeneousMineral = new HeterogeneousMineralInfo(0,
+                                dt.Rows[i]["矿物中文名称"].ToString(), dt.Rows[i]["矿物英文名称"].ToString(),
+                                dt.Rows[i]["化学式"].ToString(), dt.Rows[i]["矿物的晶系"].ToString(),
+                                dt.Rows[i]["均非性"].ToString(), dt.Rows[i]["反射率"].ToString(), dt.Rows[i]["硬度"].ToString(),
+                                dt.Rows[i]["反射色"].ToString(), dt.Rows[i]["双反射及反射多色性"].ToString(),
+                                float.Parse(Ar), dt.Rows[i]["非均质视旋转色散DAr"].ToString(),
+                                dt.Rows[i]["旋向Rs"].ToString(), dt.Rows[i]["相符Ps"].ToString(),
+                                dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["反射视旋转色散DAR"].ToString(),
+                                dt.Rows[i]["内反射"].ToString(), dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(),
+                                dt.Rows[i]["主要鉴定特征"].ToString());
+                            AccessDB.Add(heterogeneousMineral);
+                            successed++;
+                        }
+
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        DataRow[] dataRow =
+                            mineralDataSet.Tables[dt.TableName].Select("ChineseName='" + dt.Rows[i]["矿物中文名称"].ToString() +
+                                                                       "'");
+                        if (dataRow.Length > 0)
+                        {
+                            failed++;
+                        }
+                        else
+                        {
+                            HomogeneousMineralInfo homogeneousMineral = null;
+                            string Rr = dt.Rows[i]["反射视旋转角Rr"].ToString();
+                            if (!String.IsNullOrEmpty(Rr))
+                            {
+                                if (Rr.Contains("="))
+                                    Rr = Rr.Split('=')[1];
+                                Rr = AngleHelper.ConvertAngleToString(Rr);
+                            }
+                            homogeneousMineral = new HomogeneousMineralInfo(0,
+                                dt.Rows[i]["矿物中文名称"].ToString(), dt.Rows[i]["矿物英文名称"].ToString(),
+                                dt.Rows[i]["化学式"].ToString(), dt.Rows[i]["矿物的晶系"].ToString(),
+                                dt.Rows[i]["均非性"].ToString(), dt.Rows[i]["反射率"].ToString(), dt.Rows[i]["硬度"].ToString(),
+                                dt.Rows[i]["反射色"].ToString(), float.Parse(Rr),
+                                dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["内反射"].ToString(),
+                                dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(), dt.Rows[i]["主要鉴定特征"].ToString());
+
+                            AccessDB.Add(homogeneousMineral);
+                            successed++;
+                        }
+                    }
+                }
+                return ("数据导入到" + dt.TableName + "表成功！成功导入" + successed + "条，有" + failed + "条在数据库中已存在");
+            }
+            else
+            {
+                return ("请检查你的Excel中是否存在数据");
+            }
+        }
+
+        #region 更改前
+
+        /*
+        public static string ExportDataToAccess(string filepath, DataSet mineralDataSet)
+        {
+            int successed = 0;
+            int failed = 0;
+            DataTable dt = GetDataByExcel(filepath);
+            if (dt.Rows.Count > 0)
+            {
+                if (CheckIsRepeatInExcel(dt))
+                {
+                    return ("Excel中有重复的矿物，请检查后再来");
+                }
+                if (dt.TableName.Contains("非均质矿物"))
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
                         DataRow[] dataRow = mineralDataSet.Tables[dt.TableName].Select("ChineseName='" + dt.Rows[i]["矿物中文名称"].ToString() + "'");
                         if (dataRow.Length > 0)
                         {
@@ -85,7 +178,7 @@ namespace Mineral.Helper
                                                         dt.Rows[i]["化学式"].ToString(), dt.Rows[i]["矿物的晶系"].ToString(),
                                                         dt.Rows[i]["均非性"].ToString(), dt.Rows[i]["反射率"].ToString(), dt.Rows[i]["硬度"].ToString(),
                                                         dt.Rows[i]["反射色"].ToString(), dt.Rows[i]["双反射及反射多色性"].ToString(),
-                                                        float.Parse(dt.Rows[i]["非均质视旋转角Ar"].ToString()), dt.Rows[i]["非均质视旋转色散DAr"].ToString(),
+                                                        float.Parse(Ar), dt.Rows[i]["非均质视旋转色散DAr"].ToString(),
                                                         dt.Rows[i]["旋向Rs"].ToString(), dt.Rows[i]["相符Ps"].ToString(),
                                                         dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["反射视旋转色散DAR"].ToString(),
                                                         dt.Rows[i]["内反射"].ToString(), dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(),
@@ -153,7 +246,8 @@ namespace Mineral.Helper
                 return ("请检查你的Excel中是否存在数据");
             }
         }
-
+        */
+        #endregion
         /// <summary>
         /// 整理EXCEL导入的datatable
         /// </summary>
