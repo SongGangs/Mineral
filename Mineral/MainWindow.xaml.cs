@@ -54,6 +54,7 @@ namespace Mineral
 
         private void showHomoBtn_Click(object sender, RoutedEventArgs e)
         {
+            ClealTextProperty();
             UpdateCollections();
             InitDataGridByCollection(OrginHomoMinerals);
             //FillTextProperty();
@@ -63,6 +64,7 @@ namespace Mineral
 
         private void showHeteBtn_Click(object sender, RoutedEventArgs e)
         {
+            ClealTextProperty();
             UpdateCollections();
             InitDataGridByCollection(OrginHeteMinerals);
             //FillTextProperty();
