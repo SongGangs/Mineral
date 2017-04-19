@@ -210,7 +210,7 @@ namespace Mineral
                 hete.Reflectivity = this.Txt_Reflectivity_No.Text.Trim();
                 hete.Hardness = this.Txt_Hardness_No.Text.Trim();
                 hete.ReflectionColor = this.Txt_ReflectionColor_No.Text.Trim();
-                hete.Bireflection = this.Txt_ReflectionColor_No.Text.Trim();
+                hete.Bireflection = this.Txt_Bireflection_No.Text.Trim();
                 if (!string.IsNullOrEmpty(this.Txt_Ar_No.Text.Trim()))
                 {
                     hete.Ar = this.Txt_Ar_No.Text.Trim().Replace("°", null);
@@ -417,6 +417,7 @@ namespace Mineral
 
         private void DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
+            IsAdd = false;
             if (this.DataGrid.CurrentItem == null)
             {
                 return;
