@@ -734,6 +734,7 @@ namespace Mineral
             string key = comboBox.Tag.ToString();
             if (comboBox.SelectedIndex > 0)
             {
+                ClealTextProperty();
                 string value = comboBox.Text.Trim().Replace("：", null);
                 if (!paramters_Hoto.ContainsKey(key))
                 {
