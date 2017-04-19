@@ -87,6 +87,10 @@ namespace Mineral.Helper
                                     Ar = Ar.Split('=')[1];
                                 Ar = AngleHelper.ConvertAngleToString(Ar);
                             }
+                            else
+                            {
+                                Ar = "0";
+                            }
                             heterogeneousMineral = new HeterogeneousMineralInfo(0,
                                 dt.Rows[i]["矿物中文名称"].ToString(), dt.Rows[i]["矿物英文名称"].ToString(),
                                 dt.Rows[i]["化学式"].ToString(), dt.Rows[i]["矿物的晶系"].ToString(),
@@ -123,6 +127,10 @@ namespace Mineral.Helper
                                 if (Rr.Contains("="))
                                     Rr = Rr.Split('=')[1];
                                 Rr = AngleHelper.ConvertAngleToString(Rr);
+                            }
+                            else
+                            {
+                                Rr = "0";
                             }
                             homogeneousMineral = new HomogeneousMineralInfo(0,
                                 dt.Rows[i]["矿物中文名称"].ToString(), dt.Rows[i]["矿物英文名称"].ToString(),
