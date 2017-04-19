@@ -17,7 +17,7 @@ namespace Mineral.Common
         public string Reflectivity { get; set; }//反射率
         public string Hardness { get; set; }//硬度
         public string ReflectionColor { get; set; }//反射色
-        public float Rr { get; set; } //反射视旋转角Rr
+        public string Rr { get; set; } //反射视旋转角Rr
         public string DRr { get; set; }//反射视旋转色散DRr
         public string InternalReflection { get; set; }//内反射
         public string Origin { get; set; }//矿物成因产状形态特征及伴生矿物
@@ -63,8 +63,9 @@ namespace Mineral.Common
             this.Origin = Origin;
             this.IMK = IMK;
         }
+        
         public HomogeneousMineralInfo(int ID, string ChineseName, string EnglishName, string ChemicalFormula,
-            string Syngony, string NonUniformity, string Reflectivity, string Hardness, string ReflectionColor, float Rr,
+            string Syngony, string NonUniformity, string Reflectivity, string Hardness, string ReflectionColor, string Rr,
             string DRr, string InternalReflection, string Origin, string IMK)
         {
             this.ID = ID;

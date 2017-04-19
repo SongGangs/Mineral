@@ -18,7 +18,7 @@ namespace Mineral.Common
         public string Hardness { get; set; }//硬度
         public string ReflectionColor { get; set; }//反射色
         public string Bireflection { get; set; }//双反射及反射多色性
-        public float Ar { get; set; }//非均质视旋转角Ar
+        public string Ar { get; set; }//非均质视旋转角Ar
         public string DAr { get; set; }//非均质视旋转色散DAr
         public string Rs { get; set; }//旋向Rs
         public string Ps { get; set; }//相符Ps
@@ -32,6 +32,7 @@ namespace Mineral.Common
         {
             
         }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -54,31 +55,6 @@ namespace Mineral.Common
         /// <param name="InternalReflection">内反射</param>
         /// <param name="Origin">矿物成因产状形态特征及伴生矿物</param>
         /// <param name="IMK">主要鉴定特征</param>
-        public HeterogeneousMineralInfo(int ID, string ChineseName, string EnglishName, string ChemicalFormula,
-            string Syngony, string NonUniformity, string Reflectivity, string Hardness, string ReflectionColor,
-            string Bireflection, float Ar, string DAr, string Rs, string Ps, string DRr, string ReflectionDAR,
-            string InternalReflection, string Origin, string IMK)
-        {
-            this.ID = ID;
-            this.ChineseName = ChineseName;
-            this.EnglishName = EnglishName;
-            this.ChemicalFormula = ChemicalFormula;
-            this.Syngony = Syngony;
-            this.NonUniformity = NonUniformity;
-            this.Reflectivity = Reflectivity;
-            this.Hardness = Hardness;
-            this.ReflectionColor = ReflectionColor;
-            this.Bireflection = Bireflection;
-            this.Ar = Ar;
-            this.DAr = DAr;
-            this.Rs = Rs;
-            this.Ps = Ps;
-            this.DRr = DRr;
-            this.ReflectionDAR = ReflectionDAR;
-            this.InternalReflection = InternalReflection;
-            this.Origin = Origin;
-            this.IMK = IMK;
-        }
         public HeterogeneousMineralInfo(int ID, string ChineseName, string EnglishName, string ChemicalFormula,
                 string Syngony, string NonUniformity, string Reflectivity, string Hardness, string ReflectionColor,
                 string Bireflection, string DAr, string Rs, string Ps, string DRr, string ReflectionDAR,
@@ -103,5 +79,31 @@ namespace Mineral.Common
             this.Origin = Origin;
             this.IMK = IMK;
         }
+
+       public HeterogeneousMineralInfo(int ID, string ChineseName, string EnglishName, string ChemicalFormula,
+           string Syngony, string NonUniformity, string Reflectivity, string Hardness, string ReflectionColor,
+           string Bireflection, string Ar, string DAr, string Rs, string Ps, string DRr, string ReflectionDAR,
+           string InternalReflection, string Origin, string IMK)
+       {
+           this.ID = ID;
+           this.ChineseName = ChineseName;
+           this.EnglishName = EnglishName;
+           this.ChemicalFormula = ChemicalFormula;
+           this.Syngony = Syngony;
+           this.NonUniformity = NonUniformity;
+           this.Reflectivity = Reflectivity;
+           this.Hardness = Hardness;
+           this.ReflectionColor = ReflectionColor;
+           this.Bireflection = Bireflection;
+           this.Ar = Ar;
+           this.DAr = DAr;
+           this.Rs = Rs;
+           this.Ps = Ps;
+           this.DRr = DRr;
+           this.ReflectionDAR = ReflectionDAR;
+           this.InternalReflection = InternalReflection;
+           this.Origin = Origin;
+           this.IMK = IMK;
+       }
     }
 }

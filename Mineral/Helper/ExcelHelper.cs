@@ -79,32 +79,37 @@ namespace Mineral.Helper
                         }
                         else
                         {
-                            HeterogeneousMineralInfo heterogeneousMineral = null;
-                            string Ar = dt.Rows[i]["非均质视旋转角Ar"].ToString();
-                            if (!String.IsNullOrEmpty(Ar))
+                            try
                             {
-                                if (Ar.Contains("="))
-                                    Ar = Ar.Split('=')[1];
-                                Ar = AngleHelper.ConvertAngleToString(Ar);
-                            }
-                            else
-                            {
-                                Ar = "0";
-                            }
-                            heterogeneousMineral = new HeterogeneousMineralInfo(0,
-                                dt.Rows[i]["矿物中文名称"].ToString(), dt.Rows[i]["矿物英文名称"].ToString(),
-                                dt.Rows[i]["化学式"].ToString(), dt.Rows[i]["矿物的晶系"].ToString(),
-                                dt.Rows[i]["均非性"].ToString(), dt.Rows[i]["反射率"].ToString(), dt.Rows[i]["硬度"].ToString(),
-                                dt.Rows[i]["反射色"].ToString(), dt.Rows[i]["双反射及反射多色性"].ToString(),
-                                float.Parse(Ar), dt.Rows[i]["非均质视旋转色散DAr"].ToString(),
-                                dt.Rows[i]["旋向Rs"].ToString(), dt.Rows[i]["相符Ps"].ToString(),
-                                dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["反射视旋转色散DAR"].ToString(),
-                                dt.Rows[i]["内反射"].ToString(), dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(),
-                                dt.Rows[i]["主要鉴定特征"].ToString());
-                            AccessDB.Add(heterogeneousMineral);
-                            successed++;
-                        }
 
+                                HeterogeneousMineralInfo heterogeneousMineral = null;
+                                string Ar = dt.Rows[i]["非均质视旋转角Ar"].ToString();
+                                if (!String.IsNullOrEmpty(Ar))
+                                {
+                                    if (Ar.Contains("="))
+                                        Ar = Ar.Split('=')[1];
+                                    Ar = AngleHelper.ConvertAngleToString(Ar);
+                                }
+                                heterogeneousMineral = new HeterogeneousMineralInfo(0,
+                                    dt.Rows[i]["矿物中文名称"].ToString(), dt.Rows[i]["矿物英文名称"].ToString(),
+                                    dt.Rows[i]["化学式"].ToString(), dt.Rows[i]["矿物的晶系"].ToString(),
+                                    dt.Rows[i]["均非性"].ToString(), dt.Rows[i]["反射率"].ToString(),
+                                    dt.Rows[i]["硬度"].ToString(),
+                                    dt.Rows[i]["反射色"].ToString(), dt.Rows[i]["双反射及反射多色性"].ToString(),
+                                    Ar, dt.Rows[i]["非均质视旋转色散DAr"].ToString(),
+                                    dt.Rows[i]["旋向Rs"].ToString(), dt.Rows[i]["相符Ps"].ToString(),
+                                    dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["反射视旋转色散DAR"].ToString(),
+                                    dt.Rows[i]["内反射"].ToString(), dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(),
+                                    dt.Rows[i]["主要鉴定特征"].ToString());
+                                AccessDB.Add(heterogeneousMineral);
+                                successed++;
+
+                            }
+                            catch (Exception)
+                            {
+                                return "错误";
+                            }
+                        }
                     }
                 }
                 else
@@ -120,28 +125,32 @@ namespace Mineral.Helper
                         }
                         else
                         {
-                            HomogeneousMineralInfo homogeneousMineral = null;
-                            string Rr = dt.Rows[i]["反射视旋转角Rr"].ToString();
-                            if (!String.IsNullOrEmpty(Rr))
+                            try
                             {
-                                if (Rr.Contains("="))
-                                    Rr = Rr.Split('=')[1];
-                                Rr = AngleHelper.ConvertAngleToString(Rr);
-                            }
-                            else
-                            {
-                                Rr = "0";
-                            }
-                            homogeneousMineral = new HomogeneousMineralInfo(0,
-                                dt.Rows[i]["矿物中文名称"].ToString(), dt.Rows[i]["矿物英文名称"].ToString(),
-                                dt.Rows[i]["化学式"].ToString(), dt.Rows[i]["矿物的晶系"].ToString(),
-                                dt.Rows[i]["均非性"].ToString(), dt.Rows[i]["反射率"].ToString(), dt.Rows[i]["硬度"].ToString(),
-                                dt.Rows[i]["反射色"].ToString(), float.Parse(Rr),
-                                dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["内反射"].ToString(),
-                                dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(), dt.Rows[i]["主要鉴定特征"].ToString());
+                                HomogeneousMineralInfo homogeneousMineral = null;
+                                string Rr = dt.Rows[i]["反射视旋转角Rr"].ToString();
+                                if (!String.IsNullOrEmpty(Rr))
+                                {
+                                    if (Rr.Contains("="))
+                                        Rr = Rr.Split('=')[1];
+                                    Rr = AngleHelper.ConvertAngleToString(Rr);
+                                }
+                                homogeneousMineral = new HomogeneousMineralInfo(0,
+                                    dt.Rows[i]["矿物中文名称"].ToString(), dt.Rows[i]["矿物英文名称"].ToString(),
+                                    dt.Rows[i]["化学式"].ToString(), dt.Rows[i]["矿物的晶系"].ToString(),
+                                    dt.Rows[i]["均非性"].ToString(), dt.Rows[i]["反射率"].ToString(),
+                                    dt.Rows[i]["硬度"].ToString(),
+                                    dt.Rows[i]["反射色"].ToString(), Rr,
+                                    dt.Rows[i]["反射视旋转色散DRr"].ToString(), dt.Rows[i]["内反射"].ToString(),
+                                    dt.Rows[i]["矿物成因产状形态特征及伴生矿物"].ToString(), dt.Rows[i]["主要鉴定特征"].ToString());
 
-                            AccessDB.Add(homogeneousMineral);
-                            successed++;
+                                AccessDB.Add(homogeneousMineral);
+                                successed++;
+                            }
+                            catch (Exception)
+                            {
+                                return "错误";
+                            }
                         }
                     }
                 }
