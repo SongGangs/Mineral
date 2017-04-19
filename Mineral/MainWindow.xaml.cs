@@ -58,6 +58,7 @@ namespace Mineral
             InitDataGridByCollection(OrginHomoMinerals);
             //FillTextProperty();
             ShowHomoMineralInfoView();
+            curMineral = new HomogeneousMineralInfo();
         }
 
         private void showHeteBtn_Click(object sender, RoutedEventArgs e)
@@ -66,6 +67,7 @@ namespace Mineral
             InitDataGridByCollection(OrginHeteMinerals);
             //FillTextProperty();
             ShowHeteMineralInfoView();
+            curMineral=new HeterogeneousMineralInfo();
         }
 
         private void Btn_Forword_Click(object sender, RoutedEventArgs e)
@@ -81,8 +83,6 @@ namespace Mineral
             InitDataTable();
             UpdateCollections();
             InitDataGridByCollection(OrginMinerals);
-            //HeterogeneousMineralInfo heterogeneousMineral=new HeterogeneousMineralInfo(0,"矿物","矿物","矿物","矿物","矿物","矿物","矿物","矿物","矿物",(float)0.52,"矿物","矿物","矿物","矿物","矿物","矿物","矿物","矿物");
-            //AccessDb.Add(heterogeneousMineral);
         }
 
         /// <summary>
@@ -902,6 +902,13 @@ namespace Mineral
 
         private void Btn_DelectMineral_Click(object sender, RoutedEventArgs e)
         {
+            DeleteMineral();
+        }
+        /// <summary>
+        /// 删除 矿物
+        /// </summary>
+        private void DeleteMineral()
+        {
             if (curMineral == null)
             {
                 return;
@@ -943,7 +950,6 @@ namespace Mineral
                 MessageBox.Show("请先确定删除的矿物！");
             }
         }
-
         private void Btn_ReSet_Click(object sender, RoutedEventArgs e)
         {
             ClealComboBoxProperty();
@@ -1011,10 +1017,11 @@ namespace Mineral
             FindMineralByName();
         }
 
-private void FindMineralByName()
-{
+        private void FindMineralByName()
+        {
             Dictionary<string, string> paramters = new Dictionary<string, string>();
-            string name = ControlHelper.FindVisualChildItem<TextBox>(this.Txt_QueryByName, "Txt_QueryByName").Text.Trim();
+            string name =
+                ControlHelper.FindVisualChildItem<TextBox>(this.Txt_QueryByName, "Txt_QueryByName").Text.Trim();
             if (!String.IsNullOrEmpty(name))
             {
                 if (IsNatural_Number(name))
@@ -1035,7 +1042,7 @@ private void FindMineralByName()
             {
                 InitDataGridByCollection(OrginMinerals);
             }
-}
+        }
 
         private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
@@ -1052,7 +1059,8 @@ private void FindMineralByName()
             string sourcePath = System.AppDomain.CurrentDomain.BaseDirectory + @"Data\Template\" + templateType;
             if (File.Exists(sourcePath))
             {
-                string tatgetPath = @"C:\Users\Administrator\Desktop\" + templateType;
+                //拷贝到桌面
+                string tatgetPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop)+"\\" + templateType;
                 FileInfo sourcefile = new FileInfo(sourcePath);
                 if (!File.Exists(tatgetPath))
                 {
@@ -1080,5 +1088,12 @@ private void FindMineralByName()
                 FindMineralByName();
             }
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+                DeleteMineral();
+        }
+
     }
 }
