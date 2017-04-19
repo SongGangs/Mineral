@@ -4,7 +4,7 @@
     <ControlTemplate x:Key="SelectItemBtnTemplate" TargetType="{x:Type Button}">
         <Border BorderBrush="#FF75F6F8" BorderThickness="1.5" CornerRadius="15">
             <StackPanel Orientation="Horizontal">
-                <TextBox BorderThickness="0" Background="Transparent" Text="按显微镜特征搜索" IsReadOnly="True"  Foreground="#FF7C9495" FontSize="20"  Height="45" Width="300" ></TextBox>
+                <TextBox Cursor="No" BorderThickness="0" Background="Transparent" Text="按显微镜特征搜索" IsReadOnly="True"  Foreground="#FF7C9495" FontSize="20"  Height="45" Width="300" ></TextBox>
                 <Image Source="../Images/forword.png" Width="30" Margin="-30,0,0,0" ></Image>
             </StackPanel>
         </Border>
