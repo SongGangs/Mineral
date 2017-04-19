@@ -264,8 +264,10 @@
                                     <TextBox Name="Txt_InternalReflection_No" Style="{StaticResource IntLongTextStyle}" />
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource MarginStackPanelStyle}">
-                                    <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" Width="190" />
-                                    <TextBox Name="Txt_Origin_No" Style="{StaticResource IntLongAndHeightTextStyle}" Width="540" />
+                                    <Label  Style="{StaticResource IntLabelStyle}">
+                                        <TextBox TextWrapping="Wrap" BorderThickness="0"  Text="矿物成因产状形态特征及伴生矿物" />
+                                    </Label>
+                                    <TextBox Name="Txt_Origin_No" Style="{StaticResource IntLongAndHeightTextStyle}" />
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource MarginStackPanelStyle}">
                                     <Label Content="主要鉴定特征" Style="{StaticResource IntLabelStyle}" />
@@ -382,8 +384,10 @@
                             <TextBox Name="Txt_InternalReflection" Style="{StaticResource IntLongTextStyle}" />
                         </StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle2}">
-                            <Label Content="矿物成因产状形态特征及伴生矿物" Style="{StaticResource IntLabelStyle}" Width="189" />
-                            <TextBox Name="Txt_Origin" Style="{StaticResource IntLongAndHeightTextStyle}" Width="541"  />
+                            <Label Style="{StaticResource IntLabelStyle}" >
+                                <TextBox TextWrapping="Wrap" BorderThickness="0"  Text="矿物成因产状形态特征及伴生矿物" />
+                            </Label>
+                            <TextBox Name="Txt_Origin" Style="{StaticResource IntLongAndHeightTextStyle}"/>
                         </StackPanel>
                         <StackPanel Style="{StaticResource MarginStackPanelStyle2}">
                             <Label Content="主要鉴定特征" Style="{StaticResource IntLabelStyle}" />
