@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-        Title="MainFrom" Height="700" Width="1050" Foreground="#FF030202" Background="White" MaxWidth="1050" MaxHeight="700" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
+        Title="OMD" Height="700" Width="1050" Foreground="#FF030202" Background="White" MaxWidth="1050" MaxHeight="700" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
     <Window.Resources>
         <ControlTemplate x:Key="seacherBtn" TargetType="{x:Type Button}">
             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="33,33,33,33" Name="PART_Background">
