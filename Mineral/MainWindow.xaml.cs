@@ -51,26 +51,25 @@ namespace Mineral
                 this.StackPanel_Item.Visibility = Visibility.Visible;
             }
         }
-
-        private void showHomoBtn_Click(object sender, RoutedEventArgs e)
+        private void showHomoOrHeteBtn_Click(object sender, RoutedEventArgs e)
         {
             ClealTextProperty();
             UpdateCollections();
-            InitDataGridByCollection(OrginHomoMinerals);
-            //FillTextProperty();
-            ShowHomoMineralInfoView();
-            curMineral = new HomogeneousMineralInfo();
+            string tag = (sender as Button).Tag.ToString();
+            if (tag=="Hete")
+            {
+                InitDataGridByCollection(OrginHeteMinerals);
+                ShowHeteMineralInfoView();
+                curMineral = new HeterogeneousMineralInfo();
+            }
+            else if (tag == "Homo")
+            {
+                InitDataGridByCollection(OrginHomoMinerals);
+                ShowHomoMineralInfoView();
+                curMineral = new HomogeneousMineralInfo(); 
+            }
         }
 
-        private void showHeteBtn_Click(object sender, RoutedEventArgs e)
-        {
-            ClealTextProperty();
-            UpdateCollections();
-            InitDataGridByCollection(OrginHeteMinerals);
-            //FillTextProperty();
-            ShowHeteMineralInfoView();
-            curMineral=new HeterogeneousMineralInfo();
-        }
 
         private void Btn_Forword_Click(object sender, RoutedEventArgs e)
         {

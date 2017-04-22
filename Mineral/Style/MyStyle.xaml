@@ -50,6 +50,17 @@
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
     </Style>
+    <Style TargetType="{x:Type Menu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Menu}">
+                    <Border BorderBrush="#FF7AEFEE" BorderThickness="1,0,0,0">
+                        <ItemsPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--播放器样式-->
     <LinearGradientBrush x:Key="SliderBackground"  StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0" Color="#59ccfc"/>

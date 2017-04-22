@@ -60,6 +60,11 @@
             <Label Content="非均质矿物" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Foreground="#FFB03434"></Label>
         </Border>
     </ControlTemplate>
+    <ControlTemplate x:Key="seacherBtn" TargetType="{x:Type Button}">
+        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="33,33,33,33" Name="PART_Background">
+            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Height="31" Margin="5" Width="30" />
+        </Border>
+    </ControlTemplate>
     <!--播放器中控件样式-->
     <ControlTemplate x:Key="ChoseFileBtnTemplate" TargetType="{x:Type Button}">
         <Image Source="../Images/choseFile.png" Width="30"></Image>
